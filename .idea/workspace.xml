@@ -4,7 +4,47 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c2b6435-a99d-4bb3-8625-0d4168a33455" name="Changes" comment="" />
+    <list default="true" id="7c2b6435-a99d-4bb3-8625-0d4168a33455" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Frienradar-backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Frienradar-backend.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/users/registrations_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/users/registrations_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/users/sessions_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/users/sessions_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/rails" beforeDir="false" afterPath="$PROJECT_DIR$/bin/rails" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/rake" beforeDir="false" afterPath="$PROJECT_DIR$/bin/rake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/setup" beforeDir="false" afterPath="$PROJECT_DIR$/bin/setup" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.ru" beforeDir="false" afterPath="$PROJECT_DIR$/config.ru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/application.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/application.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/boot.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/boot.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/cable.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/cable.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/environment.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/environment.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/environments/development.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/environments/development.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/environments/production.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/environments/production.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/environments/test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/environments/test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/initializers/backtrace_silencers.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/initializers/backtrace_silencers.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/initializers/cors.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/initializers/cors.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/initializers/devise.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/initializers/devise.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/initializers/filter_parameter_logging.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/initializers/filter_parameter_logging.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/locales/en.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/locales/en.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/puma.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/puma.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/spring.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/spring.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20230213231428_devise_create_users.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20230213231428_devise_create_users.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/seeds.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controllers/.keep" beforeDir="false" afterPath="$PROJECT_DIR$/app/serializers/current_user_serializer.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/fixtures/.keep" beforeDir="false" afterPath="$PROJECT_DIR$/spec/controllers/current_user_spec.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/fixtures/files/.keep" beforeDir="false" afterPath="$PROJECT_DIR$/spec/fixtures/user.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/fixtures/users.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/integration/.keep" beforeDir="false" afterPath="$PROJECT_DIR$/spec/support/controller_helpers.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/mailers/.keep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/models/.keep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/models/user_test.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_helper.rb" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,6 +64,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2LhZpfQE2EGzZzk9MYsgpr7mdX9" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -33,34 +76,46 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;ruby.rails.projectView.checked&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.ruby.settings.RubyActiveModuleSdkConfigurable&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;greenplum&quot;,
+      &quot;postgresql&quot;
+    ]
   }
 }</component>
-  <component name="RdControllerToolWindowsLayoutState" isNewUi="false">
+  <component name="RdControllerToolWindowsLayoutState" isNewUi="true">
     <layout>
       <window_info id="Commit_Guest" />
-      <window_info id="Space Code Reviews" order="0" />
+      <window_info id="Space Code Reviews" order="0" show_stripe_button="false" />
       <window_info id="Bookmarks" order="1" side_tool="true" />
-      <window_info id="Pull Requests" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="3" visible="true" weight="0.3188576" />
+      <window_info id="Pull Requests" order="2" show_stripe_button="false" />
+      <window_info active="true" content_ui="combo" id="Project" order="3" visible="true" weight="0.221831" />
       <window_info id="Commit" order="4" />
       <window_info id="Learn" order="5" show_stripe_button="false" />
       <window_info id="Structure" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Run" weight="0.3713156" />
+      <window_info anchor="bottom" id="Find" show_stripe_button="false" weight="0.33033788" />
       <window_info anchor="bottom" id="Version Control" order="0" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
       <window_info anchor="bottom" id="File Transfer" order="2" />
       <window_info anchor="bottom" id="Problems View" order="3" />
-      <window_info active="true" anchor="bottom" x="635" y="931" width="1234" height="269" id="Terminal" order="4" visible="true" weight="0.2217829" />
+      <window_info active="true" anchor="bottom" x="635" y="931" width="1234" height="269" id="Terminal" order="4" visible="true" weight="0.23646209" />
       <window_info anchor="bottom" id="TypeScript" order="5" />
-      <window_info anchor="bottom" id="Services" order="6" />
-      <window_info anchor="right" id="Endpoints" order="0" />
-      <window_info anchor="right" id="Database" order="1" />
-      <window_info anchor="right" id="Notifications" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Messages" order="6" weight="0.33033788" />
+      <window_info anchor="bottom" id="Services" order="7" />
+      <window_info anchor="right" id="github.copilotToolWindow" order="0" weight="0.32981223" />
+      <window_info anchor="right" id="Endpoints" order="1" weight="0.32981223" />
+      <window_info anchor="right" id="Database" order="2" weight="0.32981223" />
+      <window_info anchor="right" id="Notifications" order="3" weight="0.32981223" />
     </layout>
   </component>
   <component name="RunManager" selected="Rails.Frienradar-backend">
@@ -149,7 +204,11 @@
       <updated>1676325463872</updated>
       <workItem from="1676325465305" duration="715000" />
       <workItem from="1676415159704" duration="597000" />
-      <workItem from="1676415943064" duration="333000" />
+      <workItem from="1676415943064" duration="599000" />
+      <workItem from="1676483566848" duration="4635000" />
+      <workItem from="1676493853750" duration="5360000" />
+      <workItem from="1676580992978" duration="1653000" />
+      <workItem from="1676764099656" duration="1579000" />
     </task>
     <servers />
   </component>
