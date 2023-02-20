@@ -2,6 +2,7 @@
 
 class User < ApplicationRecord
   before_create :assign_guid
+  has_one_attached :profile_picture
 
   devise :database_authenticatable,
          :registerable,
