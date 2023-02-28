@@ -6,9 +6,9 @@ local:
   service: Disk
   root: <%= Rails.root.join("storage") %>
 
- amazon_dev:
-   service: S3
-   access_key_id: ENV['S3_DEV_ACCESS_KEY']
-   secret_access_key: ENV['S3_DEV_SECRET_KEY']
-   region: eu-central-1
-   bucket: arn:aws:s3:::frienradar-dev
+amazon_dev:
+  service: S3
+  access_key_id: <%= Rails.application.credentials.dig(:aws, :access_key_id) %>
+  secret_access_key: <%= Rails.application.credentials.dig(:aws, :secret_access_key) %>
+  region: eu-central-1
+  bucket: frienradar-dev

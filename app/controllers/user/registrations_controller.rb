@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-class Users::RegistrationsController < Devise::RegistrationsController
+class User::RegistrationsController < Devise::RegistrationsController
   respond_to :json
+
   private
 
   def respond_with(resource, _opts = {})
@@ -16,4 +17,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
       }, status: :unprocessable_entity
     end
   end
+
+  def sign_up_params
+    params.permit(:email, :password, :name, :profile_picture)
+  end
+
 end

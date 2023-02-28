@@ -2,5 +2,13 @@
 
 class UserSerializer
   include JSONAPI::Serializer
-  attributes :id, :email, :created_at
+  attributes :guid, :email, :name, :confirmed
+
+  attribute :confirmed do |object|
+    object.confirmed?
+  end
+
+  attribute :profile_picture do |object|
+    object.profile_picture.url
+    end
 end

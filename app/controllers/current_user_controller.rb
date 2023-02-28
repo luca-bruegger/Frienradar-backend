@@ -1,5 +1,5 @@
 class CurrentUserController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:new]
 
   def index
     render json: {
@@ -7,4 +7,5 @@ class CurrentUserController < ApplicationController
       data: CurrentUserSerializer.new(current_user).serializable_hash[:data][:attributes]
     }
   end
+
 end

@@ -27,12 +27,20 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 
+# Devise token auth for authentication with JWT
 gem 'devise_token_auth'
+
+# jsonapi-serializer for serializing data
 gem 'jsonapi-serializer'
+
+# Devise for authentication
 gem 'devise'
+
+# Devise JWT for authentication with JWT
 gem 'devise-jwt'
-gem 'fast_jsonapi'
+
 gem 'aws-sdk-s3'
+gem "mini_magick"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -41,6 +49,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'rubocop', require: false
   gem 'faker'
+  gem 'mailcatcher'
 end
 
 group :development do
