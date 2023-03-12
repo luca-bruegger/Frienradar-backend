@@ -7,11 +7,15 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins ['*.frienradar.com'] << 'localhost:8100' if Rails.env.development?
+    if Rails.env.development?
+      origins ['*']
+    else
+      origins ['*.frienradar.com']
+    end
 
     resource '*',
              headers: :any,
              expose: ['Authorization'],
-             methods: [:get, :post, :put, :patch, :delete, :options, :head]
+             methods: %i[get post put patch delete options head]
   end
 end

@@ -2,15 +2,27 @@ services:
   postgres:
     image: postgres
     volumes:
-      - ./tmp/db:/var/lib/postgresql/data
+      - postgres:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    restart: always
+
+  redis:
+    image: 'redis:5.0-alpine'
+    command: redis-server
+    volumes:
+      - redis:/data
+    ports:
+      - "6379:6379"
+
   app-staging:
     container_name: app-staging
     build: .
     stdin_open: true
     tty: true
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3001 -b '0.0.0.0'"
+    command: bash -c "rm -f tmp/pids/server.pid && RAILS_ENV=staging && bundle exec rails s -p 3001 -b '0.0.0.0' -e staging"
     volumes:
       - .:/myapp
     ports:
@@ -24,6 +36,10 @@ services:
       - "traefik.http.services.app-staging.loadbalancer.server.port=3001"
       - "traefik.http.routers.app-staging.service=app-staging"
       - "traefik.http.routers.app-staging.tls.certresolver=le"
+
+volumes:
+  redis:
+  postgres:
 
 networks:
     default:

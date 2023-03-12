@@ -37,24 +37,24 @@ jobs:
           push: true
           tags: ${{ env.DOCKER_IMAGE_URI }}:${{ env.IMAGE_TAG }},${{ env.DOCKER_IMAGE_URI }}:latest
 
-#  deploy:
-#    name: Deploy staging 🚀
-#    needs: build-staging-image
-#    runs-on: ubuntu-latest
-#
-#    env:
-#      GITHUB_REF: ${{ github.ref }}
-#      DOCKER_REGISTRY: ghcr.io
-#      DOCKER_IMAGE: luca-bruegger/frienradar-backend
-#
-#    steps:
-#      - uses: actions/checkout@v2
-#
-#      - name: Creating envs
-#        run: |
-#          echo "IMAGE_TAG=sha-$(git rev-parse --short HEAD)" >> $GITHUB_ENV
-#          echo "DOCKER_IMAGE_URI=${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE }}" >> $GITHUB_ENV
-#
+  deploy:
+    name: Deploy staging 🚀
+    needs: build-staging-image
+    runs-on: ubuntu-latest
+
+    env:
+      GITHUB_REF: ${{ github.ref }}
+      DOCKER_REGISTRY: ghcr.io
+      DOCKER_IMAGE: luca-bruegger/frienradar-backend
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Creating envs
+        run: |
+          echo "IMAGE_TAG=sha-$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+          echo "DOCKER_IMAGE_URI=${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE }}" >> $GITHUB_ENV
+
 #      - name: Redeploy Portainer stack
 #        uses: wirgen/portainer-stack-redeploy-action@v1.1
 #        with:
@@ -62,3 +62,13 @@ jobs:
 #          accessToken: ${{ secrets.PORTAINER_ACCESS_TOKEN }}
 #          stackId: 5
 #          endpointId: 1
+
+      - name: Deploy Stack
+        uses: kgierke/portainer-stack-deployment@v1
+        with:
+          portainer-url: ${{ secrets.PORTAINER_HOST }}
+          portainer-username: ${{ secrets.PORTAINER_USERNAME }}
+          portainer-password: ${{ secrets.PORTAINER_PASSWORD }}
+          portainer-endpoint: 9
+          name: frienradar-staging-test
+          file: docker-compose.staging.yml

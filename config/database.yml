@@ -10,6 +10,9 @@ development:
   <<: *default
   database: frienradar_development
 
+staging:
+  <<: *default
+  database: frienradar_development
 
 test:
   <<: *default

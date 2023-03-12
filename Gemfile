@@ -50,6 +50,8 @@ group :development, :test do
   gem 'rubocop', require: false
   gem 'faker'
   gem 'mailcatcher'
+  gem 'database_cleaner-active_record'
+  # gem 'database_cleaner-redis'
 end
 
 group :development do
