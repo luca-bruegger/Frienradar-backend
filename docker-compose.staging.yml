@@ -1,0 +1,32 @@
+services:
+  postgres:
+    container_name: postgres
+    image: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+  app:
+    container_name: app-staging
+    build: .
+    stdin_open: true
+    tty: true
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3001 -b '0.0.0.0'"
+    volumes:
+      - .:/myapp
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.staging.rule=Host(`staging.api.frienradar.com`)"
+      - "traefik.http.routers.staging.entrypoints=websecure"
+      - "traefik.http.services.staging.loadbalancer.server.port=3001"
+      - "traefik.http.routers.staging.service=staging"
+      - "traefik.http.routers.staging.tls.certresolver=le"
+
+networks:
+    default:
+      name: base_default
+      external: true

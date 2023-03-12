@@ -69,7 +69,4 @@ RSpec.configure do |config|
 
   config.include Devise::Test::ControllerHelpers, type: :controller
 
-  config.before(:suite) do
-    Rails.application.load_seed # loading seeds
-  end
 end

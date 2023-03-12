@@ -2,6 +2,7 @@
 
 class UserSerializer
   include JSONAPI::Serializer
+
   attributes :guid, :email, :name, :confirmed
 
   attribute :confirmed do |object|
@@ -10,5 +11,5 @@ class UserSerializer
 
   attribute :profile_picture do |object|
     object.profile_picture.url
-    end
+  end
 end

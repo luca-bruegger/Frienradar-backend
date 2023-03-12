@@ -4,29 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c2b6435-a99d-4bb3-8625-0d4168a33455" name="Changes" comment="Update models">
-      <change afterPath="$PROJECT_DIR$/app/controllers/user/confirmations_controller.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db/seeds/files/profile_picture.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db/seeds/user.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Frienradar-backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Frienradar-backend.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/channels/application_cable/connection.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/channels/application_cable/connection.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/current_user_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/current_user_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/users/registrations_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/user/registrations_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/users/sessions_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/user/sessions_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/serializers/current_user_serializer.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/serializers/current_user_serializer.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/serializers/user_serializer.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/serializers/user_serializer.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/environments/development.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/environments/development.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/initializers/devise.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/initializers/devise.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/storage.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/storage.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/seeds.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds.rb" afterDir="false" />
-    </list>
+    <list default="true" id="7c2b6435-a99d-4bb3-8625-0d4168a33455" name="Changes" comment="Create github actions" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,7 +56,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;ruby.rails.projectView.checked&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.Sybase ASE&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -116,11 +94,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/db/seeds/files" />
       <recent name="$PROJECT_DIR$/app/serializers" />
       <recent name="$PROJECT_DIR$/app/controllers" />
       <recent name="$PROJECT_DIR$/app/serializers/api" />
-      <recent name="$PROJECT_DIR$/app/controllers/api" />
     </key>
   </component>
   <component name="RunManager" selected="Rails.Frienradar-backend">
@@ -384,7 +362,14 @@
       <workItem from="1677057299211" duration="18663000" />
       <workItem from="1677323712236" duration="8184000" />
       <workItem from="1677501080247" duration="7656000" />
-      <workItem from="1677622333206" duration="616000" />
+      <workItem from="1677622333206" duration="7667000" />
+      <workItem from="1677747383158" duration="799000" />
+      <workItem from="1677788796004" duration="5483000" />
+      <workItem from="1677835273001" duration="31000" />
+      <workItem from="1677836668923" duration="21957000" />
+      <workItem from="1678210016194" duration="346000" />
+      <workItem from="1678525100608" duration="286000" />
+      <workItem from="1678558348505" duration="7752000" />
     </task>
     <task id="LOCAL-00001" summary="Update models">
       <created>1676933517609</created>
@@ -393,7 +378,210 @@
       <option name="project" value="LOCAL" />
       <updated>1676933517609</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Docker setup">
+      <created>1677836940232</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1677836940232</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Docker setup">
+      <created>1677933686915</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1677933686915</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Docker setup">
+      <created>1677944932700</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1677944932700</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Update Dockerfile">
+      <created>1677945500517</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1677945500517</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Update docker compose">
+      <created>1677946214391</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1677946214391</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Update docker compose">
+      <created>1677946662229</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1677946662229</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Update docker config">
+      <created>1678040936556</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1678040936556</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Update docker config">
+      <created>1678043950402</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1678043950402</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Create github actions">
+      <created>1678050647503</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1678050647503</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Create github actions">
+      <created>1678050717728</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1678050717728</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Create github actions">
+      <created>1678051931240</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1678051931240</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Create github actions">
+      <created>1678051968438</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1678051968439</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Create github actions">
+      <created>1678052241607</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1678052241607</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Create github actions">
+      <created>1678052546490</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1678052546490</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Create github actions">
+      <created>1678053697853</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1678053697853</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Create github actions">
+      <created>1678058409529</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1678058409529</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Create github actions">
+      <created>1678584637471</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1678584637471</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Create github actions">
+      <created>1678585162744</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1678585162744</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Create github actions">
+      <created>1678585774037</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1678585774037</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Create github actions">
+      <created>1678586278713</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1678586278713</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Create github actions">
+      <created>1678586690790</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1678586690790</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Create github actions">
+      <created>1678626199516</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1678626199516</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Create github actions">
+      <created>1678626590178</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1678626590178</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Create github actions">
+      <created>1678627842526</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1678627842526</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Create github actions">
+      <created>1678628598316</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1678628598316</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Create github actions">
+      <created>1678631747322</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1678631747322</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Create github actions">
+      <created>1678632077308</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1678632077308</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Create github actions">
+      <created>1678632736210</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1678632736210</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Create github actions">
+      <created>1678639520056</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1678639520056</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -412,6 +600,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Update models" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update models" />
+    <MESSAGE value="Docker setup" />
+    <MESSAGE value="Update Dockerfile" />
+    <MESSAGE value="Update docker compose" />
+    <MESSAGE value="Update docker config" />
+    <MESSAGE value="Create github actions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Create github actions" />
   </component>
 </project>

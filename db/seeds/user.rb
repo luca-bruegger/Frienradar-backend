@@ -21,7 +21,7 @@ class UserSeeds
   def profile_picture
     url = Faker::LoremFlickr.image(size: '170x170', search_terms: ['people'])
     file = URI.parse(url).open
-    ActiveStorage::Blob.create_after_upload!(
+    ActiveStorage::Blob.create_and_upload!(
       io: file,
       filename: File.basename(file.base_uri.path),
       content_type: file.content_type
