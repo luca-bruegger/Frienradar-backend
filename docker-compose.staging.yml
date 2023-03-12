@@ -6,8 +6,8 @@ services:
       - ./tmp/db:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: password
-  app:
-    container_name: app-staging
+  app-staging:
+    container_name: staging
     build: .
     stdin_open: true
     tty: true
@@ -20,11 +20,11 @@ services:
       - postgres
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.staging.rule=Host(`staging.api.frienradar.com`)"
-      - "traefik.http.routers.staging.entrypoints=websecure"
-      - "traefik.http.services.staging.loadbalancer.server.port=3001"
-      - "traefik.http.routers.staging.service=staging"
-      - "traefik.http.routers.staging.tls.certresolver=le"
+      - "traefik.http.routers.app-staging.rule=Host(`staging.api.frienradar.com`)"
+      - "traefik.http.routers.app-staging.entrypoints=websecure"
+      - "traefik.http.services.app-staging.loadbalancer.server.port=3001"
+      - "traefik.http.routers.app-staging.service=app-staging"
+      - "traefik.http.routers.app-staging.tls.certresolver=le"
 
 networks:
     default:
