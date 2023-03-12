@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins ['api.frienradar.com'] << ['localhost:8100', 'api.frienradar.com'] if Rails.env.development?
+    origins ['*.frienradar.com'] << 'localhost:8100' if Rails.env.development?
 
     resource '*',
              headers: :any,

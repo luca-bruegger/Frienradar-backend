@@ -1,13 +1,12 @@
 services:
   postgres:
-    container_name: postgres
     image: postgres
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: password
   app-staging:
-    container_name: staging
+    container_name: app-staging
     build: .
     stdin_open: true
     tty: true
@@ -15,7 +14,7 @@ services:
     volumes:
       - .:/myapp
     ports:
-      - "3000:3000"
+      - "3001:3001"
     depends_on:
       - postgres
     labels:
