@@ -50,10 +50,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Creating envs
-        run: |
-          echo "IMAGE_TAG=sha-$(git rev-parse --short HEAD)" >> $GITHUB_ENV
-          echo "DOCKER_IMAGE_URI=${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE }}" >> $GITHUB_ENV
+#      - name: Creating envs
+#        run: |
+#          echo "IMAGE_TAG=sha-$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+#          echo "DOCKER_IMAGE_URI=${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE }}" >> $GITHUB_ENV
 
 #      - name: Redeploy Portainer stack
 #        uses: wirgen/portainer-stack-redeploy-action@v1.1
@@ -63,12 +63,21 @@ jobs:
 #          stackId: 5
 #          endpointId: 1
 
-      - name: Deploy Stack
-        uses: kgierke/portainer-stack-deployment@v1
+      - name: Deploy stack to Portainer
+        uses: carlrygart/portainer-stack-deploy@v1
         with:
-          portainer-url: ${{ secrets.PORTAINER_HOST }}
-          portainer-username: ${{ secrets.PORTAINER_USERNAME }}
-          portainer-password: ${{ secrets.PORTAINER_PASSWORD }}
-          portainer-endpoint: 9
-          name: frienradar-staging-test
-          file: docker-compose.staging.yml
+          portainer-host: ${{ secrets.PORTAINER_HOST }}
+          username: ${{ secrets.PORTAINER_USERNAME }}
+          password: ${{ secrets.PORTAINER_PASSWORD }}
+          stack-name: 'frienradar-staging-test'
+          stack-definition: 'docker-compose.staging.yml'
+
+#      - name: Deploy Stack
+#        uses: kgierke/portainer-stack-deployment@v1
+#        with:
+#          portainer-url: ${{ secrets.PORTAINER_HOST }}
+#          portainer-username: ${{ secrets.PORTAINER_USERNAME }}
+#          portainer-password: ${{ secrets.PORTAINER_PASSWORD }}
+#          portainer-endpoint: 9
+#          name: frienradar-staging-test
+#          file: docker-compose.staging.yml
