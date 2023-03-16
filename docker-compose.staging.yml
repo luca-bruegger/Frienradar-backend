@@ -38,7 +38,7 @@ services:
       - "traefik.http.routers.app-staging.service=app-staging"
       - "traefik.http.routers.app-staging.tls.certresolver=le"
     environment:
-      - RAILS_MASTER_KEY=$RAILS_MASTER_KEY
+      - RAILS_STAGING_KEY=$RAILS_MASTER_KEY
       - FRIENRADAR_DATABASE_STAGING_PASSWORD=$FRIENRADAR_DATABASE_STAGING_PASSWORD
 
 volumes:
