@@ -25,6 +25,8 @@
 # Ignore important credentials
 .env
 
-/config/credentials/development.key
-/config/credentials/staging.key
-/config/credentials/production.key
+# Ignore idea files
+.idea
+
+# Ignore all files in the config/credentials directory
+/config/credentials/*.key
