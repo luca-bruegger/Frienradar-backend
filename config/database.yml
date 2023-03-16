@@ -12,7 +12,9 @@ development:
 
 staging:
   <<: *default
-  database: frienradar_development
+  database: frienradar_staging
+  username: frienradar
+  password: <%= ENV['FRIENRADAR_DATABASE_STAGING_PASSWORD'] %>
 
 test:
   <<: *default

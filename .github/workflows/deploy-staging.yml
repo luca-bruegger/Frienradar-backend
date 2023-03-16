@@ -33,7 +33,7 @@ jobs:
       - name: Build docker image and push
         uses: docker/build-push-action@v4
         with:
-          context: .
+          context: ./docker/development
           push: true
           tags: ${{ env.DOCKER_IMAGE_URI }}:${{ env.IMAGE_TAG }},${{ env.DOCKER_IMAGE_URI }}:latest
 
@@ -55,5 +55,5 @@ jobs:
           portainer-host: ${{ secrets.PORTAINER_HOST }}
           username: ${{ secrets.PORTAINER_USERNAME }}
           password: ${{ secrets.PORTAINER_PASSWORD }}
-          stack-name: 'frienradar-staging-test'
+          stack-name: 'frienradar-staging'
           stack-definition: 'docker-compose.staging.yml'
