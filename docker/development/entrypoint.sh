@@ -5,7 +5,6 @@ set -e
 rm -f tmp/pids/server.pid
 
 echo "running bundle install"
-gem install bundler
 bundle install
 
 if [ -z "$SKIP_RAILS_MIGRATIONS" ]; then

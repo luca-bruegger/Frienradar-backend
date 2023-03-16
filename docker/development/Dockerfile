@@ -6,6 +6,7 @@ ENV RAILS_ENV=development
 ENV BUNDLE_PATH=/opt/bundle
 
 WORKDIR /myapp
+COPY . /myapp
 
 RUN apt-get update
 RUN apt-get install direnv -y
@@ -15,8 +16,8 @@ RUN mkdir /seed && chmod 777 /seed
 RUN mkdir /home/app && chmod 777 /home/app
 ENV HOME=/home/app
 
-COPY entrypoint.sh /usr/bin/
+COPY docker/development/entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 
-CMD [ "rails", "server", "-b", "0.0.0.0" ]
+CMD [ "rails", "server", "-b", "0.0.0.0", "-p", "3001" ]
