@@ -4,7 +4,7 @@ set -e
 
 rm -f tmp/pids/server.pid
 
-echo "running bundle install"
+echo "⚙️ Installing gems for $RAILS_ENV environment"
 bundle install
 
 if [ -z "$SKIP_RAILS_MIGRATIONS" ]; then

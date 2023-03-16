@@ -20,4 +20,4 @@ COPY docker/staging/entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 
-CMD [ "rails", "server", "-b", "0.0.0.0", "-p", "3001", "-e", "'staging'" ]
+CMD [ "rails", "server", "-e", "'staging'", "-b", "0.0.0.0", "-p", "3001" ]
