@@ -2,7 +2,7 @@ FROM ruby:3.0.0
 
 USER root
 
-ENV RAILS_ENV=development
+ENV RAILS_ENV=staging
 ENV BUNDLE_PATH=/opt/bundle
 
 WORKDIR /myapp
@@ -16,8 +16,8 @@ RUN mkdir /seed && chmod 777 /seed
 RUN mkdir /home/app && chmod 777 /home/app
 ENV HOME=/home/app
 
-COPY docker/development/entrypoint.sh /usr/bin/
+COPY docker/staging/entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 
-CMD [ "rails", "server", "-b", "0.0.0.0", "-p", "3001" ]
+CMD [ "rails", "server", "-b", "0.0.0.0", "-p", "3001", "-e", "'staging'" ]
