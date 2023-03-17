@@ -4,6 +4,7 @@ services:
     volumes:
       - postgres:/var/lib/postgresql/data
     environment:
+      POSTGRES_USER: frienradar
       POSTGRES_PASSWORD: password
     ports:
       - "5432:5432"
@@ -34,7 +35,6 @@ services:
       - redis
     environment:
       - RAILS_MASTER_KEY=1558120081078cc63f9a1a343d518894
-      - FRIENRADAR_DATABASE_STAGING_PASSWORD=password
 
 volumes:
   redis:

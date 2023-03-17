@@ -7,13 +7,13 @@ default: &default
 development:
   <<: *default
   database: frienradar_development
-  username: postgres
+  username: frienradar
   password: password
 
 staging:
   <<: *default
   database: frienradar_staging
-  username: frienradar
+  username: <%= ENV['FRIENRADAR_DATABASE_STAGING_USER'] %>
   password: <%= ENV['FRIENRADAR_DATABASE_STAGING_PASSWORD'] %>
 
 test:
