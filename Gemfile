@@ -42,7 +42,7 @@ gem 'devise-jwt'
 gem 'aws-sdk-s3'
 gem "mini_magick"
 
-group :development, :test do
+group :development, :test, :staging do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 5.0.0'

@@ -19,7 +19,7 @@ staging:
 test:
   <<: *default
   database: frienradar_test
-  username: postgres
+  username: frienradar
   password: password
 
 production:
