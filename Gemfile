@@ -42,16 +42,19 @@ gem 'devise-jwt'
 gem 'aws-sdk-s3'
 gem "mini_magick"
 
-group :development, :test, :staging do
+group :staging do
+  gem 'faker'
+  gem 'dotenv-rails'
+end
+
+group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 5.0.0'
   gem 'dotenv-rails'
   gem 'rubocop', require: false
-  gem 'faker'
   gem 'mailcatcher'
-  gem 'database_cleaner-active_record'
-  # gem 'database_cleaner-redis'
+  gem 'faker'
 end
 
 group :development do
