@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    if Rails.env.development?
+    if Rails.env.development? || Rails.env.staging?
       origins ['*']
     else
       origins ['*.frienradar.com']
