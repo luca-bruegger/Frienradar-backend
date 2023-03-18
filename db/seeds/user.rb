@@ -7,7 +7,7 @@ class UserSeeds
 
   def generate(index)
     User.create!(
-      name: Faker::Name.name,
+      name: ::Faker::Name.name,
       email: "test_#{index}@test.com",
       password: 'password',
       password_confirmation: 'password',
@@ -19,7 +19,7 @@ class UserSeeds
   private
 
   def profile_picture
-    url = Faker::LoremFlickr.image(size: '170x170', search_terms: ['people'])
+    url = ::Faker::LoremFlickr.image(size: '170x170', search_terms: ['people'])
     file = URI.parse(url).open
     ActiveStorage::Blob.create_and_upload!(
       io: file,
