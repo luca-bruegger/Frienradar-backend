@@ -24,7 +24,7 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - .:/myapp
+      - myapp:/myapp
     ports:
       - "3001:3001"
     depends_on:
@@ -45,6 +45,7 @@ services:
 volumes:
   redis:
   postgres:
+  myapp:
 
 networks:
     default:
