@@ -41,6 +41,7 @@ services:
       - "traefik.http.middlewares.app-staging.headers.accesscontrolalloworiginlist=http://localhost:8100"
       - "traefik.http.middlewares.app-staging.headers.accesscontrolmaxage=100"
       - "traefik.http.middlewares.app-staging.headers.addvaryheader=true"
+      - "traefik.http.middlewares.app-staging.headers.customresponseheaders.Access-Control-Allow-Headers=Content-Type,Authorization"
     environment:
       - RAILS_MASTER_KEY=$RAILS_MASTER_KEY
       - FRIENRADAR_DATABASE_STAGING_PASSWORD=$FRIENRADAR_DATABASE_STAGING_PASSWORD
