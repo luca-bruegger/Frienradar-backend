@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'faker'
-
 class UserSeeds
   def self.generate
     3.times do |index|
@@ -12,11 +10,13 @@ class UserSeeds
   def generate(index)
     User.create!(
       name: ::Faker::Name.name,
+      username: "test_#{index}",
       email: "test_#{index}@test.com",
       password: 'password',
       password_confirmation: 'password',
       confirmed_at: Time.now.utc,
-      profile_picture: profile_picture
+      profile_picture: profile_picture,
+      preffered_distance: 0
     )
   end
 

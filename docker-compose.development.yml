@@ -27,9 +27,9 @@ services:
     tty: true
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
-      - myapp:/myapp
+      - .:/myapp
     ports:
-      - "3001:3001"
+      - "3000:3000"
     depends_on:
       - postgres
       - redis
@@ -38,7 +38,14 @@ services:
       - RAILS_MASTER_KEY=1558120081078cc63f9a1a343d518894
       - DEVISE_JWT_SECRET_KEY=5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e
 
+  mailcatcher:
+    image: yappabe/mailcatcher
+    depends_on:
+      - app-dev
+    ports:
+      - "1025:1025"
+      - "1080:1080"
+
 volumes:
   redis:
   postgres:
-  myapp:

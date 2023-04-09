@@ -39,6 +39,8 @@ gem 'devise'
 # Devise JWT for authentication with JWT
 gem 'devise-jwt'
 
+gem 'pr_geohash'
+
 gem 'aws-sdk-s3'
 gem "mini_magick"
 
@@ -53,8 +55,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 5.0.0'
   gem 'dotenv-rails'
   gem 'rubocop', require: false
-  gem 'mailcatcher'
   gem 'faker'
+  gem 'database_cleaner'
 end
 
 group :development do

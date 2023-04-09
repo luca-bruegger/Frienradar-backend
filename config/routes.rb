@@ -8,7 +8,8 @@ Rails.application.routes.draw do
                confirmations: 'user/confirmations'
              }
 
-  resources :current_user, only: [:index]
+  resources :current_user, only: [:index, :update]
+  resources :geolocations, only: [:update]
 
   root to: proc { [404, {}, ['Not found.']] }
 end

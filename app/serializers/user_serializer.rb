@@ -3,7 +3,7 @@
 class UserSerializer
   include JSONAPI::Serializer
 
-  attributes :guid, :email, :name, :confirmed
+  attributes :id, :guid, :email, :name, :confirmed, :username, :email, :preffered_distance, :geolocation_id
 
   attribute :confirmed do |object|
     object.confirmed?
@@ -11,5 +11,13 @@ class UserSerializer
 
   attribute :profile_picture do |object|
     object.profile_picture.url
+  end
+
+  attribute :email do |object|
+    object.email || object.unconfirmed_email
+  end
+
+  attribute :geolocation do |object|
+    object.geolocation.id
   end
 end

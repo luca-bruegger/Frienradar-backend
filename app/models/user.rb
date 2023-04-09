@@ -5,14 +5,16 @@ class User < ApplicationRecord
   before_create :check_profile_picture_size
 
   has_one_attached :profile_picture
+  has_one :geolocation, dependent: :destroy
 
-  validates :name, presence: true, uniqueness: true, length: { minimum: 3, maximum: 30 }
+  validates :username, presence: true, uniqueness: true, length: { minimum: 3, maximum: 30 }, allow_blank: true
+  validates :name, presence: true, length: { minimum: 3, maximum: 30 }
   validates :profile_picture, presence: true
+  validates :preffered_distance, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 3 }
 
   devise :database_authenticatable,
          :registerable,
          :recoverable,
-         :rememberable,
          :validatable,
          :jwt_authenticatable,
          :confirmable,
