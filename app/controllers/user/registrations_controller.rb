@@ -2,21 +2,18 @@
 
 class User::RegistrationsController < Devise::RegistrationsController
   respond_to :json
-  after_action :create_geolocation, only: :create
 
   private
 
   def create_geolocation
-    if resource.created?
-      Geolocation.create!(
-        user: resource,
-        guid: resource.guid
-      )
-    end
+    Geolocation.create!(
+      user: resource
+    )
   end
 
   def respond_with(resource, _opts = {})
     if resource.persisted?
+      create_geolocation
       render json: {
         message: 'Signed up sucessfully.',
         data: UserSerializer.new(resource).serializable_hash[:data][:attributes]

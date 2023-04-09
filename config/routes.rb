@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :current_user, only: [:index, :update]
   resources :geolocations, only: [:update]
+  resources :nearby_users
 
   root to: proc { [404, {}, ['Not found.']] }
 end

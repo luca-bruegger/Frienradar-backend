@@ -43,8 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_08_001328) do
   end
 
   create_table "geolocations", force: :cascade do |t|
-    t.string "guid", null: false
-    t.string "geohash", null: false
+    t.string "geohash"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
