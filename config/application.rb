@@ -25,5 +25,7 @@ module FrienradarBackend
     config.api_only = true
 
     config.session_store :disabled
+
+    WillPaginate.per_page = 25
   end
 end

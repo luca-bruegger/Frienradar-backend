@@ -7,7 +7,7 @@ require_relative '../config/environment'
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 
-
+require 'database_cleaner/active_record'
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -42,7 +42,7 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
 
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
@@ -76,7 +76,10 @@ RSpec.configure do |config|
     #   "Cannot generate URL for 50by50.gif using Disk service, please set ActiveStorage::Current.url_options".
     ActiveStorage::Current.url_options = {host: "https://www.example.com"}
 
-    DatabaseCleaner.clean_with(:deletion)
+    DatabaseCleaner.strategy = :truncation
+    # then, whenever you need to clean the DB
+    DatabaseCleaner.clean
+
     Rails.application.load_seed # loading seeds
   end
 end

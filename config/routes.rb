@@ -8,9 +8,19 @@ Rails.application.routes.draw do
                confirmations: 'user/confirmations'
              }
 
-  resources :current_user, only: [:index, :update]
+  match '/current_user', to: 'current_user#show', via: :get
+  match '/current_user', to: 'current_user#update', via: :put
+  match '/requested_users', to: 'requested_users#show', via: :get
+  match '/friends', to: 'friends#show', via: :get
+  match '/current_user/edited', to: 'current_user#update_with_profile_picture', via: :put
+
+  scope '/invitations' do
+    match '/accept', to: 'invitations#accept', via: :put
+  end
+
   resources :geolocations, only: [:update]
   resources :nearby_users
+  resources :invitations, only: [:create, :index, :show, :destroy]
 
   root to: proc { [404, {}, ['Not found.']] }
 end

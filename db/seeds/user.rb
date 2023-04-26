@@ -2,7 +2,8 @@
 
 class UserSeeds
   def self.generate
-    3.times do |index|
+    60.times do |index|
+      index % 50 == 0 ? puts('Seeding users @' + index.to_s) : nil
       new.generate(index)
     end
   end
@@ -10,13 +11,13 @@ class UserSeeds
   def generate(index)
     User.create!(
       name: ::Faker::Name.name,
-      username: "test_#{index}",
+      username: ::Faker::Internet.username(specifier: 3..30),
       email: "test_#{index}@test.com",
       password: 'password',
       password_confirmation: 'password',
       confirmed_at: Time.now.utc,
       profile_picture: profile_picture,
-      preffered_distance: 0
+      preferred_distance: 0
     )
   end
 

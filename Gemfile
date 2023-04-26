@@ -44,6 +44,9 @@ gem 'pr_geohash'
 gem 'aws-sdk-s3'
 gem "mini_magick"
 
+gem 'will_paginate', '~> 3.3'
+gem 'onesignal', '~> 1.0.1'
+
 group :staging do
   gem 'faker'
   gem 'dotenv-rails'
@@ -56,7 +59,9 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'rubocop', require: false
   gem 'faker'
-  gem 'database_cleaner'
+  gem 'factory_bot_rails'
+  gem 'database_cleaner-active_record'
+  #gem 'database_cleaner-redis'
 end
 
 group :development do

@@ -8,7 +8,7 @@
 # With the help of additional callbacks, it is possible to hook into the
 # action procedures without overriding the entire method.
 class CrudController < ListController
-  class_attribute :permitted_attrs, :nested_models, :permitted_relationships
+  class_attribute :permitted_attrs, :nested_models
 
   # GET /entries/1
   def show(options = {})
@@ -82,10 +82,6 @@ class CrudController < ListController
 
   def permitted_param?(attribute_name)
     permitted_attrs.map(&:to_s).include?(attribute_name)
-  end
-
-  def permitted_relationship?(attribute_name)
-    permitted_relationships.map(&:to_s).include?(attribute_name)
   end
 
   def model_identifier

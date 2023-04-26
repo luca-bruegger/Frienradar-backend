@@ -1,36 +1,37 @@
 # frozen_string_literal: true
 
-class CurrentUserController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :update]
+class CurrentUserController < CrudController
+  before_action :authenticate_user!, only: [:show, :update, :update_with_profile_picture]
 
-  def index
-    if current_user.nil?
-      render json: {
-        data: nil
-      }, status: :unauthorized
+  def update_with_profile_picture(options = {})
+    authorize entry
+    entry.attributes = update_params
+    if entry.save
+      render_entry(options[:render_options])
     else
-      render json: {
-        data: CurrentUserSerializer.new(current_user).serializable_hash[:data][:attributes]
-      }, status: :ok
-    end
-  end
-
-  def update
-    if current_user.update(user_params)
-      render json: {
-        data: CurrentUserSerializer.new(current_user).serializable_hash[:data][:attributes]
-      }, status: :ok
-    else
-      render json: {
-        message: current_user.errors.full_messages.to_sentence
-      }, status: :unprocessable_entity
+      render_errors
     end
   end
 
   private
 
-  def user_params
-    params.require(:user).permit(:name, :email, :profile_picture, :username, :preffered_distance)
+  def permitted_attrs
+    [:name, :email, :profile_picture, :username, :preferred_distance]
   end
 
+  def model_class
+    User
+  end
+
+  def model_serializer
+    CurrentUserSerializer
+  end
+
+  def fetch_entry
+    model_scope.find(current_user.id)
+  end
+
+  def update_params
+    params.permit(:name, :profile_picture, :username, :preferred_distance)
+  end
 end

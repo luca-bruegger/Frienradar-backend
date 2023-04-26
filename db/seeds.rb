@@ -5,5 +5,5 @@ Dir[Rails.root.join('db', 'seeds', '*.rb')].sort.each { |f| require f }
 
 require 'faker'
 
-UserSeeds.generate
+#UserSeeds.generate
 GeolocationSeeds.generate

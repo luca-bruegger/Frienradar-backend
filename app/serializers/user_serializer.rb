@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UserSerializer < ApplicationSerializer
-  attributes :id, :guid, :email, :name, :confirmed, :username, :email, :preffered_distance
+  attributes :guid, :email, :name, :confirmed, :username, :email, :preferred_distance
 
   attribute :confirmed do |object|
     object.confirmed?
@@ -17,5 +17,9 @@ class UserSerializer < ApplicationSerializer
 
   attribute :geolocation_id do |object|
     object.geolocation.id
+  end
+
+  attribute :invitation_count do |object|
+    object.invitations.count
   end
 end

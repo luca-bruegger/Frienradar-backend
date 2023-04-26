@@ -12,25 +12,21 @@ class ListController < ApplicationController
            to: 'self.class'
 
   class_attribute :custom_model_class
-  class_attribute :render_options
-
-  self.render_options = {}
 
   # GET /entries
   def index(options = {})
     authorize model_class
-    # render({ json: fetch_entries,
-    #          each_serializer: list_serializer,
-    #          root: model_root_key.pluralize }
-    #          .merge(render_options)
-    #          .merge(options.fetch(:render_options, {})))
     render json: model_serializer.new(fetch_entries, options).serializable_hash.to_json, status: :ok
   end
 
   protected
 
   def fetch_entries
-    model_scope.list
+    if page.present?
+      model_scope.paginate(page: page)
+    else
+      model_scope.list
+    end
   end
 
   private
@@ -41,6 +37,10 @@ class ListController < ApplicationController
 
   def model_root_key
     model_class.name.underscore
+  end
+
+  def page
+    params[:page].nil? ? nil : params[:page].to_i
   end
 
   class << self

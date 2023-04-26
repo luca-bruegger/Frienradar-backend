@@ -42,6 +42,10 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.action_mailer.preview_path = "#{Rails.root}/spec/mailers/previews"
 
+  # Websocket
+  config.action_cable.url = "ws://localhost:3000/cable"
+  config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/, /file:\/\/*/, 'file://']
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
