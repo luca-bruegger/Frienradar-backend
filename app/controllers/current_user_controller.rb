@@ -16,7 +16,7 @@ class CurrentUserController < CrudController
   private
 
   def permitted_attrs
-    [:name, :email, :profile_picture, :username, :preferred_distance]
+    [:name, :description, :email, :profile_picture, :username, :preferred_distance]
   end
 
   def model_class
@@ -32,6 +32,6 @@ class CurrentUserController < CrudController
   end
 
   def update_params
-    params.permit(:name, :profile_picture, :username, :preferred_distance)
+    params.permit(:name, :profile_picture, :username, :preferred_distance, :description)
   end
 end

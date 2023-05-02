@@ -5,22 +5,21 @@ require_relative 'helpers/geohash_generator'
 class GeolocationSeeds
   def self.generate
     User.all.each_with_index do |user, index|
-      hsh = geohash(index)
-      puts "Seeding geolocation @#{index} with geohash #{hsh}"
-      user.geolocation.geohash = hsh
+      index % 10 == 0 ? puts('Seeding geohash @' + index.to_s) : nil
+      user.geolocation.geohash = geohash(index)
       user.geolocation.save!
     end
   end
 
   def self.geohash(index)
     case index
-    when 1..10
+    when 1..5
       "u0m3tz"
-    when 11..20
+    when 6..10
       "u0m3" + GeohashGenerator.generate(geohash_length: 2)
-    when 21..30
+    when 11..15
       "u0" + GeohashGenerator.generate(geohash_length: 4)
-    when 31..40
+    when 16..20
       "u" + GeohashGenerator.generate(geohash_length: 5)
     else
       GeohashGenerator.generate(geohash_length: 6)

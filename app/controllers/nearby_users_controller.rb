@@ -2,7 +2,7 @@
 
 class NearbyUsersController < CrudController
   before_action :authenticate_user!
-  GEOHASH_LENGTS = [6, 4, 3, 2].freeze
+  GEOHASH_LENGTHS = [6, 4, 3, 2, 0].freeze
 
   def index
     super(options)
@@ -11,12 +11,27 @@ class NearbyUsersController < CrudController
   private
 
   def nearby_user_ids
-    geolocations = Geolocation.where("geohash LIKE :geohash", geohash: "#{geohash}%")
+    case distance
+    when 6
+      geolocations = Geolocation.where("geohash LIKE :geohash", geohash: "#{geohash_by_distance}%")
+    when 4
+      geolocations = Geolocation.where("geohash LIKE :geohash", geohash: "#{geohash_by_distance}%")
+                       .where.not("geohash LIKE :geohash", geohash: "#{geohash.first(GEOHASH_LENGTHS[0])}%")
+    when 3
+      geolocations = Geolocation.where("geohash LIKE :geohash", geohash: "#{geohash_by_distance}%")
+                       .where.not("geohash LIKE :geohash", geohash: "#{geohash.first(GEOHASH_LENGTHS[1])}%")
+    when 2
+      geolocations = Geolocation.where("geohash LIKE :geohash", geohash: "#{geohash_by_distance}%")
+                       .where.not("geohash LIKE :geohash", geohash: "#{geohash.first(GEOHASH_LENGTHS[2])}%")
+    else
+      geolocations = Geolocation.where.not("geohash LIKE :geohash", geohash: "#{geohash.first(GEOHASH_LENGTHS[3])}%")
+    end
+
     geolocations.pluck(:user_id) - [current_user.id]
   end
 
   def fetch_entries
-    User.where(id: nearby_user_ids).paginate(page: page).to_a
+    User.registration_completed.where(id: nearby_user_ids).paginate(page: page).to_a
   end
 
   def model_class
@@ -31,12 +46,20 @@ class NearbyUsersController < CrudController
     NearbyUserSerializer
   end
 
+  def permitted_attrs
+    [:geohash]
+  end
+
+  def geohash_by_distance
+    geohash.first(distance)
+  end
+
   def geohash
-    current_user.geolocation.geohash.first(distance)
+    params[:geohash] || current_user.geolocation.geohash
   end
 
   def distance
-    GEOHASH_LENGTS[params[:distance].to_i || current_user.preferred_distance]
+    GEOHASH_LENGTHS[params[:distance].to_i || current_user.preferred_distance]
   end
 
   def options

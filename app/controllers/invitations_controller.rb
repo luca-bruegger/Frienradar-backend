@@ -10,8 +10,8 @@ class InvitationsController < CrudController
       contents = { en: "From " + friend.username, de: "Von " + friend.username }
 
       send_notification(friend, headings: headings, contents: contents)
-      send_socket_notification(friend, 'received')
-      send_socket_notification(current_user, 'sent')
+      invitation_to_socket(friend, 'received')
+      invitation_to_socket(current_user, 'sent')
       render_entry({ status: :created })
     else
       render_errors
@@ -26,8 +26,11 @@ class InvitationsController < CrudController
       headings = { en: "Request rejected", de: "Freundschaftsanfrage abgelehnt" }
       contents = { en: friend.username, de: friend.username }
 
-      send_notification(user, headings: headings, contents: contents)
-      send_socket_notification(user, 'rejected')
+      unless entry.confirmed?
+        send_notification(user, headings: headings, contents: contents)
+        invitation_to_socket(user, 'rejected')
+      end
+
       head :no_content
     else
       render_errors
@@ -38,12 +41,15 @@ class InvitationsController < CrudController
     authorize entry
     if entry.accept
       user = User.find(entry.user_id)
+      friend = User.find(entry.friend_id)
       headings = { en: "Request accepted", de: "Freundschaftsanfrage angenommen" }
       contents = { en: current_user.username, de: current_user.username }
 
       send_notification(user, headings: headings, contents: contents)
-      send_socket_notification(user, 'accepted')
-      render_entry({ status: :ok })
+      user_to_socket(user, friend, 'accepted')
+      render json: {
+        data: Friend::MinimalSerializer.new(user).serializable_hash[:data][:attributes]
+      }, status: :ok
     else
       render_errors
     end
@@ -63,7 +69,7 @@ class InvitationsController < CrudController
       contents: contents,
       ios_badge_type: "Increase",
       ios_badge_count: 1,
-      include_external_user_ids: [user.guid]
+      include_external_user_ids: [user.id]
     )
 
     begin
@@ -75,9 +81,9 @@ class InvitationsController < CrudController
     end
   end
 
-  def send_socket_notification(user, type)
+  def invitation_to_socket(user, type)
     ActionCable.server.broadcast(
-      "invitations_channel_#{user.guid}",
+      "invitations_channel_#{user.id}",
       {
         type: type,
         data: InvitationSerializer.new(entry).serializable_hash[:data][:attributes]
@@ -85,8 +91,18 @@ class InvitationsController < CrudController
     )
   end
 
+  def user_to_socket(sender, friend, type)
+    ActionCable.server.broadcast(
+      "invitations_channel_#{sender.id}",
+      {
+        type: type,
+        data: Friend::MinimalSerializer.new(friend).serializable_hash[:data][:attributes]
+      }
+    )
+  end
+
   def permitted_attrs
-    [:friend_guid]
+    [:friend_id]
   end
 
   def fetch_entries
@@ -98,7 +114,7 @@ class InvitationsController < CrudController
   end
 
   def friend
-    User.find_by(guid: model_params[:friend_guid] || entry.friend_id)
+    User.find(model_params[:friend_id] || entry.friend_id)
   end
 
   def model_serializer

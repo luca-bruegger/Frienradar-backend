@@ -186,6 +186,8 @@ GEM
       activesupport (>= 3.0.0)
     racc (1.6.2)
     rack (2.2.6.4)
+    rack-attack (6.6.1)
+      rack (>= 1.0, < 3)
     rack-cors (2.0.0)
       rack (>= 2.0.0)
     rack-test (2.0.2)
@@ -302,6 +304,7 @@ DEPENDENCIES
   pr_geohash
   puma (~> 3.11)
   pundit (~> 2.3)
+  rack-attack
   rack-cors
   rails (~> 7.0)
   redis (~> 4.0)

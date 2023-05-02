@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class NearbyUserSerializer < ApplicationSerializer
-  attributes :id, :username, :profile_picture
+class Friend::MinimalSerializer < ApplicationSerializer
+  attributes :id, :username
 
   attribute :profile_picture do |object|
     object.profile_picture.url

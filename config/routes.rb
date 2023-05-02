@@ -5,7 +5,8 @@ Rails.application.routes.draw do
              controllers: {
                sessions: 'user/sessions',
                registrations: 'user/registrations',
-               confirmations: 'user/confirmations'
+               confirmations: 'user/confirmations',
+                passwords: 'user/passwords',
              }
 
   match '/current_user', to: 'current_user#show', via: :get
@@ -21,6 +22,8 @@ Rails.application.routes.draw do
   resources :geolocations, only: [:update]
   resources :nearby_users
   resources :invitations, only: [:create, :index, :show, :destroy]
+  resources :profiles, only: [:show]
+  resources :social_accounts
 
   root to: proc { [404, {}, ['Not found.']] }
 end

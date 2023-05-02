@@ -1,13 +1,8 @@
 class Invitation < ApplicationRecord
   belongs_to :user
 
-
   def accept
     update_attribute(:confirmed, true)
-  end
-
-  def friend
-    User.find(friend_id)
   end
 
   def self.reacted?(user_id, friend_id)

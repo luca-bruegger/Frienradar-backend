@@ -25,7 +25,7 @@ class ListController < ApplicationController
     if page.present?
       model_scope.paginate(page: page)
     else
-      model_scope.list
+      model_scope.all
     end
   end
 

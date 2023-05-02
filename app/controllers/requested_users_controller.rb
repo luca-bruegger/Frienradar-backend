@@ -2,7 +2,7 @@
 
 class RequestedUsersController < CrudController
 
-  def show()
+  def show
     authorize model_class, policy_class: RequestedUserPolicy
     render_entry
   end

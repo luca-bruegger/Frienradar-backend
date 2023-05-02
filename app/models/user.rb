@@ -3,7 +3,6 @@
 class User < ApplicationRecord
   GEOHASH_LENGTHS = [6, 5, 3, 2].freeze
 
-  before_create :assign_guid
   before_create :check_profile_picture_size
   after_create :build_geolocation
 
@@ -14,9 +13,13 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { minimum: 3, maximum: 30 }
   validates :profile_picture, presence: true
   validates :preferred_distance, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 3 }
+  validates :description, length: { maximum: 150 }
 
-  has_many :invitations, dependent: :destroy
+  has_many :invitations, dependent: :destroy, foreign_key: 'user_id', primary_key: 'id'
   has_many :pending_invitations, -> { where(confirmed: false) }, class_name: 'Invitation', foreign_key: 'user_id', dependent: :destroy
+  scope :registration_completed, -> { where("LENGTH(username) >= 3 AND LENGTH(username) <= 30 AND confirmed_at IS NOT NULL") }
+
+  has_many :social_accounts, dependent: :destroy
 
   devise :database_authenticatable,
          :registerable,
@@ -39,6 +42,10 @@ class User < ApplicationRecord
     invitations.new(friend_id: friend_id)
   end
 
+  def add_social_account(provider, username)
+    social_accounts.new(provider: provider, username: username)
+  end
+
   def friends
     friends_i_sent_invitations = Invitation.where(user_id: id, confirmed: true).pluck(:friend_id)
     friends_i_got_invitations = Invitation.where(friend_id: id, confirmed: true).pluck(:user_id)
@@ -57,17 +64,6 @@ class User < ApplicationRecord
   end
 
   private
-
-  def assign_guid(attempts = 10)
-    retries ||= 0
-    self.guid = SecureRandom.urlsafe_base64(nil, false)
-  rescue ActiveRecord::RecordNotUnique => e
-    raise if (retries += 1) > attempts
-
-    Rails.logger.warn("random token, unlikely collision number #{retries}")
-    self.guid = SecureRandom.urlsafe_base64(16, false)
-    retry
-  end
 
   def check_profile_picture_size
     return unless profile_picture.attached?

@@ -11,12 +11,12 @@ class InvitationSerializer < ApplicationSerializer
     User.find(object.friend_id).username
   end
 
-  attribute :friend_guid do |object|
-    User.find(object.friend_id).guid
+  attribute :friend_id do |object|
+    object.friend_id
   end
 
-  attribute :sender_guid do |object|
-    User.find(object.user_id).guid
+  attribute :sender_id do |object|
+    object.user_id
   end
 
   attribute :sender_profile_picture do |object|

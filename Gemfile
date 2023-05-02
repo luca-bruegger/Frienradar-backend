@@ -39,13 +39,21 @@ gem 'devise'
 # Devise JWT for authentication with JWT
 gem 'devise-jwt'
 
+# Library for geohashing
 gem 'pr_geohash'
 
+# Handle Profile Pictures
 gem 'aws-sdk-s3'
 gem "mini_magick"
 
+# Pagination
 gem 'will_paginate', '~> 3.3'
+
+# Push Notifications
 gem 'onesignal', '~> 1.0.1'
+
+# Rate limiting
+gem 'rack-attack'
 
 group :staging do
   gem 'faker'

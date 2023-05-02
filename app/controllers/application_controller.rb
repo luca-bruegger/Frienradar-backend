@@ -2,14 +2,16 @@
 
 class ApplicationController < ActionController::API
   include Pundit::Authorization
+  include Pundit
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
-  def ensure_confirmed
-    unless current_user.confirmed?
-      render json: {
-      status: { code: 401 },
-      message: "You need to confirm your account before continuing."
-      }, status: :unauthorized
-    end
+  def user_not_authorized
+    render json: {
+      error: {
+        message: "You are not authorized to perform this action."
+
+      }
+    }, status: :not_allowed
   end
 
   def not_found

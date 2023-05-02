@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UserSerializer < ApplicationSerializer
-  attributes :guid, :email, :name, :confirmed, :username, :email, :preferred_distance
+  attributes :id, :name, :username, :preferred_distance, :updated_at
 
   attribute :confirmed do |object|
     object.confirmed?
@@ -16,7 +16,7 @@ class UserSerializer < ApplicationSerializer
   end
 
   attribute :geolocation_id do |object|
-    object.geolocation.id
+    object.geolocation.present? ? object.geolocation.id : nil
   end
 
   attribute :invitation_count do |object|

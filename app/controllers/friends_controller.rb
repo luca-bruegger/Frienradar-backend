@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
+require 'will_paginate/array'
+
 class FriendsController < CrudController
 
-  def show()
+  def show
     authorize model_class, policy_class: FriendPolicy
     render_entry
   end
@@ -20,7 +22,7 @@ class FriendsController < CrudController
   end
 
   def model_serializer
-    FriendSerializer
+    Friend::MinimalSerializer
   end
 
   def entry
