@@ -12,11 +12,11 @@ services:
 
   redis:
     image: 'redis:5.0-alpine'
-    command: redis-server
+    command: redis-server --port 6380
     volumes:
       - redis:/data
     ports:
-      - "6379:6379"
+      - "6380:6380"
 
   app-dev:
     container_name: app-dev
@@ -37,8 +37,11 @@ services:
       # Fake secrets for development
       - RAILS_MASTER_KEY=1558120081078cc63f9a1a343d518894
       - DEVISE_JWT_SECRET_KEY=5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e
-      - REDIS_URL=redis://redis:6379/0
-      - ALLOWED_REQUEST_ORIGINS=/http:\/\/*/, /https:\/\/*/
+      - REDIS_URL=redis://redis:6380/0
+      - ACTION_CABLE_URL=ws://localhost:3000/cable
+      - DEEPLINK_HOST=https://frienradar.com
+
+      # You have to use your own OneSignal account for development
       - ONESIGNAL_API_KEY=$ONESIGNAL_API_KEY
       - ONESIGNAL_APP_ID=$ONESIGNAL_APP_ID
       - ONESIGNAL_USER_KEY=$ONESIGNAL_USER_KEY

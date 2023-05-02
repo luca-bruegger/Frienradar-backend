@@ -33,7 +33,6 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :aws_development
 
-  config.action_mailer.perform_caching = false
 
   config.action_mailer.default_url_options = { host: "localhost:3000" }
   config.action_mailer.raise_delivery_errors = false
@@ -43,7 +42,7 @@ Rails.application.configure do
   config.action_mailer.preview_path = "#{Rails.root}/spec/mailers/previews"
 
   # Websocket
-  config.action_cable.url = "ws://localhost:3000/cable"
+  config.action_cable.url = ENV["ACTION_CABLE_URL"]
   config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/, /file:\/\/*/, 'file://']
 
   # Print deprecation notices to the Rails logger.

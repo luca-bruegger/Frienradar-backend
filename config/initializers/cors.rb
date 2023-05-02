@@ -16,7 +16,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
                credentials: false
     else
       if Rails.env.staging?
-        origins ['http://localhost:8100']
+        origins ENV['STAGING_CORS_ORIGINS'].split(',')
         resource '*',
                  headers: :any,
                  expose: ['Authorization'],

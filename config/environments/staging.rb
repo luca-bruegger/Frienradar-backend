@@ -84,6 +84,23 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  config.action_mailer.default_url_options = { host: "staging.api.frienradar.com" }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              ENV['MAIL_DOMAIN_ADDRESS'],
+    port:                 ENV['MAIL_SMTP_PORT'],
+    user_name:            ENV['MAIL_EMAIL_ADDRESS'],
+    password:             ENV['MAIL_EMAIL_PASSWORD'],
+    authentication:       'plain',
+    ssl:                  true,
+    enable_starttls_auto: true
+  }
+
+  # Websocket
+  config.action_cable.url = ENV['ACTION_CABLE_URL_STAGING']
+  config.action_cable.allowed_request_origins = ENV['ACTION_CABLE_ALLOWED_REQUEST_ORIGINS_STAGING'].split(',')
+
+
   # Add staging host to allowed hosts
   config.hosts << 'staging.api.frienradar.com'
 end
