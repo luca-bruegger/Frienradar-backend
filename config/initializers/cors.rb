@@ -7,19 +7,28 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    unless Rails.env.production?
-      origins ['http://localhost:8100']
+    if Rails.env.development?
+      origins ['*']
       resource '*',
                headers: :any,
                expose: ['Authorization'],
                methods: %i[get post put patch delete options head],
-               credentials: true
+               credentials: false
     else
-      origins ['*.frienradar.com']
-      resource '*',
-               headers: :any,
-               expose: ['Authorization'],
-               methods: %i[get post put patch delete options head]
+      if Rails.env.staging?
+        origins ENV['STAGING_CORS_ORIGINS'].split(',')
+        resource '*',
+                 headers: :any,
+                 expose: ['Authorization'],
+                 methods: %i[get post put patch delete options head],
+                 credentials: true
+      else
+        origins ['*.frienradar.com']
+        resource '*',
+                 headers: :any,
+                 expose: ['Authorization'],
+                 methods: %i[get post put patch delete options head]
+      end
     end
   end
 end

@@ -1,0 +1,2 @@
+class FriendSerializer < ApplicationSerializer
+end

@@ -1,29 +1,36 @@
 # frozen_string_literal: true
 
 class User::ConfirmationsController < Devise::ConfirmationsController
-  include ActionController::Helpers
+  respond_to :json
 
-  helper_method :deeplink_path
+  def create
+    self.resource = resource_class.send_confirmation_instructions(resource_params)
+    yield resource if block_given?
 
-  def new
-    if current_user.confirmed?
+    if successfully_sent?(resource)
       render json: {
-        status: { code: 200 },
-        message: "Your account is already confirmed."
+        data: 'Verification email sent.'
       }, status: :ok
     else
-      current_user.send_confirmation_instructions
       render json: {
-        status: { code: 200 },
-        message: "Successfully sent confirmation instructions."
-      }, status: :ok
+        data: 'Verification email could not be sent.'
+      }, status: :unprocessable_entity
     end
   end
 
-  private
+  def show
+    self.resource = resource_class.confirm_by_token(params[:confirmation_token])
+    yield resource if block_given?
 
-  def deeplink_path(token)
-    `https://app.frienradar.com/additional-login-data?token=#{token}`
+    if resource.errors.empty?
+      set_flash_message!(:notice, :confirmed)
+      render json: {
+        data: 'Your email address has been successfully confirmed.'
+      }, status: :ok
+    else
+      render json: {
+        data: resource.errors.full_messages
+      }, status: :unprocessable_entity
+    end
   end
-
 end

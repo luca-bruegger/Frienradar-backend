@@ -7,12 +7,24 @@ module ApplicationCable
     end
 
     private
+
     def find_verified_user
-      if verified_user = User.find_by(id: cookies.encrypted[:user_id])
-        verified_user
+      if user_from_token.present?
+        user_from_token
       else
         reject_unauthorized_connection
       end
     end
+
+    def user_from_token
+      token = request.params[:access_token]
+
+      begin
+        Warden::JWTAuth::UserDecoder.new.call(token, :user, nil)
+      rescue JWT::DecodeError
+        nil
+      end
+    end
+
   end
 end

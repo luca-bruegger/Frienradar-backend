@@ -5,15 +5,22 @@ class User::RegistrationsController < Devise::RegistrationsController
 
   private
 
+  def create_geolocation
+    Geolocation.create!(
+      user: resource
+    )
+  end
+
   def respond_with(resource, _opts = {})
     if resource.persisted?
+      create_geolocation
       render json: {
-        status: {code: 200, message: 'Signed up sucessfully.'},
+        message: 'Signed up sucessfully.',
         data: UserSerializer.new(resource).serializable_hash[:data][:attributes]
-      }
+      }, status: :created
     else
       render json: {
-        status: {message: "User couldn't be created successfully. #{resource.errors.full_messages.to_sentence}"}
+        message: "User couldn't be created. #{resource.errors.full_messages.to_sentence}"
       }, status: :unprocessable_entity
     end
   end

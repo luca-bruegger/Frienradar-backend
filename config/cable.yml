@@ -1,10 +1,17 @@
 development:
-  adapter: async
+  adapter: redis
+  url: <%= ENV["REDIS_URL"] %>
+  channel_prefix: frienradar_development
 
 test:
   adapter: test
 
+staging:
+  adapter: redis
+  url: <%= ENV["REDIS_URL_STAGING"] %>
+  channel_prefix: frienradar_staging
+
 production:
   adapter: redis
-  url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
-  channel_prefix: frienradar_backend_production
+  url: <%= ENV["REDIS_URL_PRODUCTION"] %>
+  channel_prefix: frienradar_production

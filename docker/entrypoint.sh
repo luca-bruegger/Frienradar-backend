@@ -13,13 +13,13 @@ if [ -z "$SKIP_RAILS_MIGRATIONS" ]; then
   echo "✅ Migrations done"
 fi
 
-if [ -z "$skip_seeds" ]; then
-  if [ ! -f /seed_done ]; then
+if [ -z "$SKIP_SEEDS" ]; then
+  if [ ! -f .seed_done ]; then
     echo "⚙️ Seeding db"
-    bundle exec rails db:seed && date > /seed_done
+    bundle exec rails db:seed && date > .seed_done
     echo "✅ Seeding done"
   else
-    echo "↪️ Skipping seeding because already done on $(cat /seed_done)"
+    echo "↪️ Skipping seeding because already done on $(cat .seed_done)"
   fi
 fi
 

@@ -10,16 +10,17 @@ services:
       - "5432:5432"
     restart: always
 
-  redis:
+  redis-staging:
+    container_name: redis
     image: 'redis:5.0-alpine'
-    command: redis-server
+    command: redis-server --port 6380
     volumes:
       - redis:/data
     ports:
-      - "6379:6379"
+      - "6380:6380"
 
   app-staging:
-    container_name: app-staging
+    container_name: app
     image: ghcr.io/luca-bruegger/frienradar-backend:latest
     stdin_open: true
     tty: true
@@ -38,14 +39,37 @@ services:
       - "traefik.http.routers.app-staging.service=app-staging"
       - "traefik.http.routers.app-staging.tls.certresolver=le"
       - "traefik.http.middlewares.app-staging.headers.accesscontrolallowmethods=GET,POST,PUT,PATCH,DELETE,OPTIONS,HEAD"
-      - "traefik.http.middlewares.app-staging.headers.accesscontrolalloworiginlist=http://localhost:8100"
+      - "traefik.http.middlewares.app-staging.headers.accesscontrolalloworiginlist=https://beta.frienradar.com,capacitor://app.frienradar.com"
       - "traefik.http.middlewares.app-staging.headers.accesscontrolmaxage=100"
       - "traefik.http.middlewares.app-staging.headers.addvaryheader=true"
     environment:
+      # General
       - RAILS_MASTER_KEY=$RAILS_MASTER_KEY
       - DEVISE_JWT_SECRET_KEY=$DEVISE_JWT_SECRET_KEY
+      - DEEPLINK_HOST=$DEEPLINK_HOST
+
+      # Database
       - FRIENRADAR_DATABASE_STAGING_PASSWORD=$FRIENRADAR_DATABASE_STAGING_PASSWORD
       - FRIENRADAR_DATABASE_STAGING_USER=$FRIENRADAR_DATABASE_STAGING_USER
+      - REDIS_URL_STAGING=$REDIS_URL_STAGING
+
+      # ActionCable
+      - ACTION_CABLE_URL=$ACTION_CABLE_URL
+      - ACTION_CABLE_ALLOWED_REQUEST_ORIGINS_STAGING=$ACTION_CABLE_ALLOWED_REQUEST_ORIGINS_STAGING
+
+      # OneSignal
+      - ONESIGNAL_API_KEY=$ONESIGNAL_API_KEY
+      - ONESIGNAL_APP_ID=$ONESIGNAL_APP_ID
+      - ONESIGNAL_USER_KEY=$ONESIGNAL_USER_KEY
+
+      # Mailer
+      - MAIL_DOMAIN_ADDRESS=$MAIL_DOMAIN_ADDRESS
+      - MAIL_SMTP_PORT=$MAIL_SMTP_PORT
+      - MAIL_EMAIL_ADDRESS=$MAIL_EMAIL_ADDRESS
+      - MAIL_EMAIL_PASSWORD=$MAIL_EMAIL_PASSWORD
+
+      # Hosts
+      - STAGING_CORS_ORIGINS=$STAGING_CORS_ORIGINS
 
 volumes:
   redis:

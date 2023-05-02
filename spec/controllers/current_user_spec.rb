@@ -29,8 +29,6 @@ describe CurrentUserController do
 
         body = JSON.parse(response.body, object_class: OpenStruct)
 
-        expect(body.status.code).to eq(200)
-
         expect(body.data.guid).to eq(user.guid)
         expect(body.data.email).to eq(user.email)
         expect(body.data.name).to eq(user.name)

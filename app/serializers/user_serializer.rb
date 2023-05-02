@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-class UserSerializer
-  include JSONAPI::Serializer
-
-  attributes :guid, :email, :name, :confirmed
+class UserSerializer < ApplicationSerializer
+  attributes :id, :name, :username, :preferred_distance, :updated_at
 
   attribute :confirmed do |object|
     object.confirmed?
@@ -11,5 +9,17 @@ class UserSerializer
 
   attribute :profile_picture do |object|
     object.profile_picture.url
+  end
+
+  attribute :email do |object|
+    object.email || object.unconfirmed_email
+  end
+
+  attribute :geolocation_id do |object|
+    object.geolocation.present? ? object.geolocation.id : nil
+  end
+
+  attribute :invitation_count do |object|
+    object.invitations.count
   end
 end
