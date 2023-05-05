@@ -46,7 +46,7 @@ Rails.application.configure do
   config.log_level = :debug
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
@@ -75,11 +75,9 @@ Rails.application.configure do
   # require "syslog/logger"
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new "app-name")
 
-  if ENV["RAILS_LOG_TO_STDOUT"].present?
-    logger           = ActiveSupport::Logger.new(STDOUT)
-    logger.formatter = config.log_formatter
-    config.logger    = ActiveSupport::TaggedLogging.new(logger)
-  end
+  logger = ActiveSupport::Logger.new(STDOUT)
+  logger.formatter = config.log_formatter
+  config.logger = ActiveSupport::TaggedLogging.new(logger)
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
@@ -87,12 +85,12 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: "staging.api.frienradar.com" }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              ENV['MAIL_DOMAIN_ADDRESS'],
-    port:                 ENV['MAIL_SMTP_PORT'],
-    user_name:            ENV['MAIL_EMAIL_ADDRESS'],
-    password:             ENV['MAIL_EMAIL_PASSWORD'],
-    authentication:       'plain',
-    ssl:                  true,
+    address: ENV['MAIL_DOMAIN_ADDRESS'],
+    port: ENV['MAIL_SMTP_PORT'],
+    user_name: ENV['MAIL_EMAIL_ADDRESS'],
+    password: ENV['MAIL_EMAIL_PASSWORD'],
+    authentication: 'plain',
+    ssl: true,
     enable_starttls_auto: true
   }
 
