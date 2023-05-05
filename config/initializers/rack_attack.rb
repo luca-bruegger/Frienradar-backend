@@ -24,8 +24,8 @@ class Rack::Attack
   # Throttle all requests by IP (60rpm)
   #
   # Key: "rack::attack:#{Time.now.to_i/:period}:req/ip:#{req.ip}"
-  throttle('req/ip', limit: 300, period: 5.minutes) do |req|
-    req.ip # unless req.path.start_with?('/assets')
+  throttle('requests by ip', limit: 300, period: 5.minutes) do |req|
+    req.ip unless req.path.start_with?('/assets')
   end
 
   ### Prevent Brute-Force Login Attacks ###
@@ -40,8 +40,12 @@ class Rack::Attack
   # Throttle POST requests to /login by IP address
   #
   # Key: "rack::attack:#{Time.now.to_i/:period}:logins/ip:#{req.ip}"
-  throttle('logins/ip', limit: 5, period: 20.seconds) do |req|
-    req.ip
+  throttle('limit logins per email', limit: 6, period: 60) do |req|
+    if req.path == '/user/sign_in' && req.post?
+      # Normalize the email, using the same logic as your authentication process, to
+      # protect against rate limit bypasses.
+      req.params['user']['email'].to_s.downcase.gsub(/\s+/, "")
+    end
   end
 
   # Throttle POST requests to /login by email param
@@ -68,9 +72,10 @@ class Rack::Attack
   # If you want to return 503 so that the attacker might be fooled into
   # believing that they've successfully broken your app (or you just want to
   # customize the response), then uncomment these lines.
-  # self.throttled_responder = lambda do |env|
-  #  [ 503,  # status
-  #    {},   # headers
-  #    ['']] # body
-  # end
+  self.throttled_responder = lambda do |env|
+   [ 503,  # status
+     {},   # headers
+     [error: 'Service Unavailable']  # body
+   ]
+  end
 end
