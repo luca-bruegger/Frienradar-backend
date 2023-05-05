@@ -23,7 +23,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
                  methods: %i[get post put patch delete options head],
                  credentials: true
       else
-        origins ['*.frienradar.com']
+        origins ENV['PROD_CORS_ORIGINS'].split(',')
         resource '*',
                  headers: :any,
                  expose: ['Authorization'],

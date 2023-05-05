@@ -20,7 +20,7 @@ services:
       - "6380:6380"
 
   app-staging:
-    container_name: app
+    container_name: app-staging
     image: ghcr.io/luca-bruegger/frienradar-backend:latest
     stdin_open: true
     tty: true
@@ -30,7 +30,7 @@ services:
       - "3001:3001"
     depends_on:
       - postgres
-      - redis
+      - redis-staging
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.app-staging.rule=Host(`staging.api.frienradar.com`)"
@@ -54,7 +54,7 @@ services:
       - REDIS_URL_STAGING=$REDIS_URL_STAGING
 
       # ActionCable
-      - ACTION_CABLE_URL=$ACTION_CABLE_URL
+      - ACTION_CABLE_URL_STAGING=$ACTION_CABLE_URL_STAGING
       - ACTION_CABLE_ALLOWED_REQUEST_ORIGINS_STAGING=$ACTION_CABLE_ALLOWED_REQUEST_ORIGINS_STAGING
 
       # OneSignal
