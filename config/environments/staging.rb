@@ -35,15 +35,15 @@ Rails.application.configure do
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
-  # config.action_cable.url = "wss://example.com/cable"
-  # config.action_cable.allowed_request_origins = [ "http://example.com", /http:\/\/example.*/ ]
+  config.action_cable.url = ENV['ACTION_CABLE_URL_STAGING']
+  config.action_cable.allowed_request_origins = ENV['ACTION_CABLE_ALLOWED_REQUEST_ORIGINS_STAGING'].split(',')
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
 
   # Include generic and useful information about system operation, but avoid logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII).
-  config.log_level = :info
+  config.log_level = :debug
 
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
@@ -53,7 +53,7 @@ Rails.application.configure do
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter     = :resque
-  # config.active_job.queue_name_prefix = "frienradar_backend_production"
+  # config.active_job.queue_name_prefix = "frienradar_backend_staging"
 
   config.action_mailer.perform_caching = false
 
@@ -95,11 +95,6 @@ Rails.application.configure do
     ssl:                  true,
     enable_starttls_auto: true
   }
-
-  # Websocket
-  config.action_cable.url = ENV['ACTION_CABLE_URL_STAGING']
-  config.action_cable.allowed_request_origins = ENV['ACTION_CABLE_ALLOWED_REQUEST_ORIGINS_STAGING'].split(',')
-
 
   # Add staging host to allowed hosts
   config.hosts << 'staging.api.frienradar.com'
