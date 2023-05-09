@@ -46,6 +46,10 @@ services:
       - ONESIGNAL_APP_ID=$ONESIGNAL_APP_ID
       - ONESIGNAL_USER_KEY=$ONESIGNAL_USER_KEY
 
+
+      - RAILS_LOG_LEVEL=info
+
+
   mailcatcher:
     image: yappabe/mailcatcher
     depends_on:

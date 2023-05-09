@@ -33,6 +33,7 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :aws_development
 
+  config.log_level = ENV['RAILS_LOG_LEVEL'] || :debug
 
   config.action_mailer.default_url_options = { host: "localhost:3000" }
   config.action_mailer.raise_delivery_errors = false
