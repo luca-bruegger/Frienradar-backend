@@ -34,9 +34,9 @@ Rails.application.configure do
   config.active_storage.service = :aws_development
 
   # Mount Action Cable outside main process or domain.
-  # config.action_cable.mount_path = nil
-  config.action_cable.url = ENV['ACTION_CABLE_URL_STAGING']
-  config.action_cable.allowed_request_origins = ENV['ACTION_CABLE_ALLOWED_REQUEST_ORIGINS_STAGING'].split(',')
+  config.action_cable.mount_path = 'cable'
+  config.action_cable.url = ENV['ACTION_CABLE_URL']
+  config.action_cable.allowed_request_origins = ENV['ACTION_CABLE_ALLOWED_REQUEST_ORIGINS'].split(',')
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
@@ -53,7 +53,7 @@ Rails.application.configure do
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter     = :resque
-  # config.active_job.queue_name_prefix = "frienradar_backend_staging"
+  # config.active_job.queue_name_prefix = "app_backend_staging"
 
   config.action_mailer.perform_caching = false
 
@@ -82,7 +82,7 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.default_url_options = { host: "staging.api.frienradar.com" }
+  config.action_mailer.default_url_options = { host: ENV["RAILS_APP_HOST"] }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: ENV['MAIL_DOMAIN_ADDRESS'],
@@ -95,5 +95,5 @@ Rails.application.configure do
   }
 
   # Add staging host to allowed hosts
-  config.hosts << 'staging.api.frienradar.com'
+  config.hosts << ENV["RAILS_APP_HOST"]
 end

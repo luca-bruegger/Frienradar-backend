@@ -15,20 +15,12 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
                methods: %i[get post put patch delete options head],
                credentials: false
     else
-      if Rails.env.staging?
-        origins ENV['STAGING_CORS_ORIGINS'].split(',')
-        resource '*',
-                 headers: :any,
-                 expose: ['Authorization'],
-                 methods: %i[get post put patch delete options head],
-                 credentials: true
-      else
-        origins ENV['PROD_CORS_ORIGINS'].split(',')
-        resource '*',
-                 headers: :any,
-                 expose: ['Authorization'],
-                 methods: %i[get post put patch delete options head]
-      end
+      origins ENV['CORS_ORIGINS'].split(',')
+      resource '*',
+               headers: :any,
+               expose: ['Authorization'],
+               methods: %i[get post put patch delete options head],
+               credentials: true
     end
   end
 end

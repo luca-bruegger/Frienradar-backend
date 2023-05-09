@@ -4,8 +4,8 @@ services:
     volumes:
       - postgres:/var/lib/postgresql/data
     environment:
-      POSTGRES_USER: $FRIENRADAR_DATABASE_STAGING_USER
-      POSTGRES_PASSWORD: $FRIENRADAR_DATABASE_STAGING_PASSWORD
+      POSTGRES_USER: $FRIENRADAR_DATABASE_USER
+      POSTGRES_PASSWORD: $FRIENRADAR_DATABASE_PASSWORD
     ports:
       - "5432:5432"
     restart: always
@@ -35,9 +35,12 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.app-staging.rule=Host(`staging.api.frienradar.com`)"
       - "traefik.http.routers.app-staging.entrypoints=websecure"
+
       - "traefik.http.services.app-staging.loadbalancer.server.port=3001"
+
       - "traefik.http.routers.app-staging.service=app-staging"
       - "traefik.http.routers.app-staging.tls.certresolver=le"
+
       - "traefik.http.middlewares.app-staging.headers.accesscontrolallowmethods=GET,POST,PUT,PATCH,DELETE,OPTIONS,HEAD"
       - "traefik.http.middlewares.app-staging.headers.accesscontrolalloworiginlist=https://beta.frienradar.com,capacitor://app.frienradar.com"
       - "traefik.http.middlewares.app-staging.headers.accesscontrolmaxage=100"
@@ -48,15 +51,16 @@ services:
       - DEVISE_JWT_SECRET_KEY=$DEVISE_JWT_SECRET_KEY
       - DEEPLINK_HOST=$DEEPLINK_HOST
       - RAILS_LOG_LEVEL=$RAILS_LOG_LEVEL
+      - RAILS_APP_HOST=$RAILS_APP_HOST
 
       # Database
-      - FRIENRADAR_DATABASE_STAGING_PASSWORD=$FRIENRADAR_DATABASE_STAGING_PASSWORD
-      - FRIENRADAR_DATABASE_STAGING_USER=$FRIENRADAR_DATABASE_STAGING_USER
-      - REDIS_URL_STAGING=$REDIS_URL_STAGING
+      - FRIENRADAR_DATABASE_PASSWORD=$FRIENRADAR_DATABASE_PASSWORD
+      - FRIENRADAR_DATABASE_USER=$FRIENRADAR_DATABASE_USER
+      - REDIS_URL=$REDIS_URL
 
       # ActionCable
-      - ACTION_CABLE_URL_STAGING=$ACTION_CABLE_URL_STAGING
-      - ACTION_CABLE_ALLOWED_REQUEST_ORIGINS_STAGING=$ACTION_CABLE_ALLOWED_REQUEST_ORIGINS_STAGING
+      - ACTION_CABLE_URL=$ACTION_CABLE_URL
+      - ACTION_CABLE_ALLOWED_REQUEST_ORIGINS=$ACTION_CABLE_ALLOWED_REQUEST_ORIGINS
 
       # OneSignal
       - ONESIGNAL_API_KEY=$ONESIGNAL_API_KEY
@@ -70,7 +74,7 @@ services:
       - MAIL_EMAIL_PASSWORD=$MAIL_EMAIL_PASSWORD
 
       # Hosts
-      - STAGING_CORS_ORIGINS=$STAGING_CORS_ORIGINS
+      - CORS_ORIGINS=$CORS_ORIGINS
 
 volumes:
   redis:

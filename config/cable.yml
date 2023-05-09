@@ -8,10 +8,10 @@ test:
 
 staging:
   adapter: redis
-  url: <%= ENV["REDIS_URL_STAGING"] %>
+  url: <%= ENV["REDIS_URL"] %>
   channel_prefix: frienradar_staging
 
 production:
   adapter: redis
-  url: <%= ENV["REDIS_URL_PRODUCTION"] %>
+  url: <%= ENV["REDIS_URL"] %>
   channel_prefix: frienradar_production

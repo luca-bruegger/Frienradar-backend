@@ -13,8 +13,8 @@ development:
 staging:
   <<: *default
   database: frienradar_staging
-  username: <%= ENV['FRIENRADAR_DATABASE_STAGING_USER'] %>
-  password: <%= ENV['FRIENRADAR_DATABASE_STAGING_PASSWORD'] %>
+  username: <%= ENV['FRIENRADAR_DATABASE_USER'] %>
+  password: <%= ENV['FRIENRADAR_DATABASE_PASSWORD'] %>
 
 test:
   <<: *default
@@ -25,6 +25,6 @@ test:
 production:
   <<: *default
   database: frienradar_production
-  username: <%= ENV['FRIENRADAR_DATABASE_PRODUCTION_USER'] %>
-  password: <%= ENV['FRIENRADAR_DATABASE_PRODUCTION_PASSWORD'] %>
+  username: <%= ENV['FRIENRADAR_DATABASE_USER'] %>
+  password: <%= ENV['FRIENRADAR_DATABASE_PASSWORD'] %>
 
