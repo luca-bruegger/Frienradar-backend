@@ -40,6 +40,8 @@ services:
 
       - "traefik.http.routers.app-staging.service=app-staging"
       - "traefik.http.routers.app-staging.tls.certresolver=le"
+      - "traefik.http.routers.app-staging.tls=true"
+
 
       - "traefik.http.middlewares.app-staging.headers.accesscontrolallowmethods=GET,POST,PUT,PATCH,DELETE,OPTIONS,HEAD"
       - "traefik.http.middlewares.app-staging.headers.accesscontrolalloworiginlist=https://beta.frienradar.com,capacitor://app.frienradar.com"
