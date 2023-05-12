@@ -12,6 +12,12 @@ module ApplicationCable
       if user_from_token.present?
         user_from_token
       else
+        message = "The user is not found. Connection rejected."
+
+        logger.add_tags 'ActionCable', message # to console
+
+        self.transmit error: message # this is what you wanted
+
         reject_unauthorized_connection
       end
     end
