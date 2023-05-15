@@ -12,7 +12,7 @@ module ApplicationCable
       if user_from_token.present?
         user_from_token
       else
-        message = "The user is not found. Connection rejected."
+        message = "Connection rejected."
 
         logger.add_tags 'ActionCable', message # to console
 

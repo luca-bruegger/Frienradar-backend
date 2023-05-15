@@ -43,8 +43,7 @@ Rails.application.configure do
   config.action_mailer.preview_path = "#{Rails.root}/spec/mailers/previews"
 
   # Websocket
-  config.action_cable.url = ENV["ACTION_CABLE_URL"]
-  config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/, /file:\/\/*/, 'file://']
+  config.action_cable.disable_request_forgery_protection = true
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
