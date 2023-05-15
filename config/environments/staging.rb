@@ -96,5 +96,5 @@ Rails.application.configure do
   }
 
   # Add staging host to allowed hosts
-  config.hosts << ENV["RAILS_APP_HOST"]
+  config.hosts << ENV["RAILS_APP_HOSTS"].split(",")
 end
