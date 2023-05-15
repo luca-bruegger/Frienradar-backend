@@ -43,9 +43,17 @@ services:
       - "traefik.http.routers.app-staging.tls=true"
 
 
-      - "traefik.http.middlewares.app-staging.headers.accesscontrolallowmethods=GET,POST,PUT,PATCH,DELETE,OPTIONS,HEAD"
-      - "traefik.http.middlewares.app-staging.headers.accesscontrolalloworiginlist=https://beta.frienradar.com,capacitor://app.frienradar.com"
-      - "traefik.http.middlewares.app-staging.headers.accesscontrolmaxage=100"
+      - "traefik.http.routers.app-staging-ws.rule=Host(`staging.api.frienradar.com`)&&Path(`/cable`)"
+      - "traefik.http.routers.app-staging-ws.entrypoints=websecure"
+
+      - "traefik.http.routers.app-staging-ws.service=app-staging"
+      - "traefik.http.routers.app-staging-ws.tls.certresolver=le"
+
+
+
+      #- "traefik.http.middlewares.app-staging.headers.accesscontrolallowmethods=GET,POST,PUT,PATCH,DELETE,OPTIONS,HEAD"
+      #- "traefik.http.middlewares.app-staging.headers.accesscontrolalloworiginlist=https://beta.frienradar.com,capacitor://app.frienradar.com"
+      #- "traefik.http.middlewares.app-staging.headers.accesscontrolmaxage=100"
       - "traefik.http.middlewares.app-staging.headers.addvaryheader=true"
     environment:
       # General
