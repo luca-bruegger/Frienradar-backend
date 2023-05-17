@@ -5,9 +5,8 @@ class InvitationsController < CrudController
     build_entry
     authorize entry
     if entry.save
-      puts "entry: #{entry}"
       headings = { en: "Friend request", de: "Freundschaftsanfrage" }
-      contents = { en: "From " + friend.username, de: "Von " + friend.username }
+      contents = { en: "From " + current_user.username, de: "Von " + current_user.username }
 
       send_notification(friend, headings: headings, contents: contents)
       invitation_to_socket(friend, 'received')
