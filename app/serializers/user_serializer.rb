@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UserSerializer < ApplicationSerializer
-  attributes :id, :name, :username, :preferred_distance, :updated_at
+  attributes :id, :name, :username, :description, :preferred_distance, :updated_at
 
   attribute :confirmed do |object|
     object.confirmed?
