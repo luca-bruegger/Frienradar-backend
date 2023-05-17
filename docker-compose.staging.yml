@@ -45,15 +45,16 @@ services:
 
       - "traefik.http.routers.app-staging-ws.rule=Host(`staging.api.frienradar.com`)&&Path(`/cable`)"
       - "traefik.http.routers.app-staging-ws.entrypoints=websecure"
+      - "traefik.http.middlewares.redirect-staging-wss.headers.customrequestheaders.X-Forwarded-Proto=https"
 
       - "traefik.http.routers.app-staging-ws.service=app-staging"
       - "traefik.http.routers.app-staging-ws.tls.certresolver=le"
 
 
 
-      #- "traefik.http.middlewares.app-staging.headers.accesscontrolallowmethods=GET,POST,PUT,PATCH,DELETE,OPTIONS,HEAD"
-      #- "traefik.http.middlewares.app-staging.headers.accesscontrolalloworiginlist=https://beta.frienradar.com,capacitor://app.frienradar.com"
-      #- "traefik.http.middlewares.app-staging.headers.accesscontrolmaxage=100"
+      - "traefik.http.middlewares.app-staging.headers.accesscontrolallowmethods=GET,POST,PUT,PATCH,DELETE,OPTIONS,HEAD"
+      - "traefik.http.middlewares.app-staging.headers.accesscontrolalloworiginlist=https://beta.frienradar.com,capacitor://app.frienradar.com"
+      - "traefik.http.middlewares.app-staging.headers.accesscontrolmaxage=100"
       - "traefik.http.middlewares.app-staging.headers.addvaryheader=true"
     environment:
       # General
@@ -63,6 +64,7 @@ services:
       - RAILS_LOG_LEVEL=$RAILS_LOG_LEVEL
       - RAILS_APP_HOST=$RAILS_APP_HOST
       - RAILS_APP_HOSTS=$RAILS_APP_HOSTS
+      - RAILS_SERVE_STATIC_FILES=$RAILS_SERVE_STATIC_FILES
 
       # Database
       - FRIENRADAR_DATABASE_PASSWORD=$FRIENRADAR_DATABASE_PASSWORD

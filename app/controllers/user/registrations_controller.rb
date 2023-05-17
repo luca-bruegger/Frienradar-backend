@@ -19,9 +19,8 @@ class User::RegistrationsController < Devise::RegistrationsController
         data: UserSerializer.new(resource).serializable_hash[:data][:attributes]
       }, status: :created
     else
-      render json: {
-        message: "User couldn't be created. #{resource.errors.full_messages.to_sentence}"
-      }, status: :unprocessable_entity
+      render json: "User couldn't be created. #{resource.errors.full_messages.to_sentence}",
+             status: :unprocessable_entity
     end
   end
 
