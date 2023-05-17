@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ProfileSerializer < ApplicationSerializer
-  attributes :id, :name, :username, :updated_at
+  attributes :id, :name, :username, :description, :updated_at
 
   attribute :profile_picture do |object|
     object.profile_picture.url
