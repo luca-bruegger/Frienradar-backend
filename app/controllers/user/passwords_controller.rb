@@ -43,9 +43,7 @@ class User::PasswordsController < Devise::PasswordsController
   end
 
   def respond_with_error(errors = [])
-    render json: {
-      error: errors.full_messages.to_sentence
-    }, status: :bad_request
+    render json: errors.full_messages.to_sentence, status: :bad_request
   end
 
 end
