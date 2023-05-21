@@ -25,5 +25,5 @@ Rails.application.routes.draw do
   resources :profiles, only: [:show]
   resources :social_accounts
 
-  root to: proc { [404, {}, ['Not found.']] }
+  root to: proc { [404, {}, ['Not found. But everything is working fine. Have a nice day!']] }
 end

@@ -7,7 +7,7 @@ services:
       POSTGRES_USER: $FRIENRADAR_DATABASE_USER
       POSTGRES_PASSWORD: $FRIENRADAR_DATABASE_PASSWORD
     ports:
-      - "5433:5433"
+      - "5432:5432"
     restart: always
 
   redis-staging:
@@ -18,7 +18,7 @@ services:
     volumes:
       - redis:/data
     ports:
-      - "6380:6380"
+      - "6370:6379"
 
   app-staging:
     container_name: app-staging
@@ -29,35 +29,35 @@ services:
     volumes:
       - myapp:/myapp
     ports:
-      - "3001:3001"
+      - "3000:3000"
     depends_on:
       - postgres
       - redis-staging
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.app-staging.rule=Host(`staging.api.frienradar.com`)"
-      - "traefik.http.routers.app-staging.entrypoints=websecure"
+      - "traefik.http.routers.app-production.rule=Host(`api.frienradar.com`)"
+      - "traefik.http.routers.app-production.entrypoints=websecure"
 
-      - "traefik.http.services.app-staging.loadbalancer.server.port=3001"
+      - "traefik.http.services.app-production.loadbalancer.server.port=3000"
 
-      - "traefik.http.routers.app-staging.service=app-staging"
-      - "traefik.http.routers.app-staging.tls.certresolver=le"
-      - "traefik.http.routers.app-staging.tls=true"
-
-
-      - "traefik.http.routers.app-staging-ws.rule=Host(`staging.api.frienradar.com`)&&Path(`/cable`)"
-      - "traefik.http.routers.app-staging-ws.entrypoints=websecure"
-      - "traefik.http.middlewares.redirect-staging-wss.headers.customrequestheaders.X-Forwarded-Proto=https"
-
-      - "traefik.http.routers.app-staging-ws.service=app-staging"
-      - "traefik.http.routers.app-staging-ws.tls.certresolver=le"
+      - "traefik.http.routers.app-production.service=app-production"
+      - "traefik.http.routers.app-production.tls.certresolver=le"
+      - "traefik.http.routers.app-production.tls=true"
 
 
+      - "traefik.http.routers.app-production-ws.rule=Host(`api.frienradar.com`)&&Path(`/cable`)"
+      - "traefik.http.routers.app-production-ws.entrypoints=websecure"
+      - "traefik.http.middlewares.redirect-production-wss.headers.customrequestheaders.X-Forwarded-Proto=https"
 
-      - "traefik.http.middlewares.app-staging.headers.accesscontrolallowmethods=GET,POST,PUT,PATCH,DELETE,OPTIONS,HEAD"
-      - "traefik.http.middlewares.app-staging.headers.accesscontrolalloworiginlist=https://beta.frienradar.com,capacitor://app.frienradar.com"
-      - "traefik.http.middlewares.app-staging.headers.accesscontrolmaxage=100"
-      - "traefik.http.middlewares.app-staging.headers.addvaryheader=true"
+      - "traefik.http.routers.app-production-ws.service=app-production"
+      - "traefik.http.routers.app-production-ws.tls.certresolver=le"
+
+
+
+      - "traefik.http.middlewares.app-production.headers.accesscontrolallowmethods=GET,POST,PUT,PATCH,DELETE,OPTIONS,HEAD"
+      - "traefik.http.middlewares.app-production.headers.accesscontrolalloworiginlist=https://app.frienradar.com,capacitor://app.frienradar.com"
+      - "traefik.http.middlewares.app-production.headers.accesscontrolmaxage=100"
+      - "traefik.http.middlewares.app-production.headers.addvaryheader=true"
     environment:
       # General
       - RAILS_MASTER_KEY=$RAILS_MASTER_KEY

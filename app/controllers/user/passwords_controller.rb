@@ -16,20 +16,17 @@ class User::PasswordsController < Devise::PasswordsController
   # PUT /resource/password
   def update
     self.resource = resource_class.reset_password_by_token(resource_params)
-    yield resource if block_given?
 
-    if resource.errors.empty?
-      resource.unlock_access! if unlockable?(resource)
-      if resource_class.sign_in_after_reset_password
-        resource.after_database_authentication
-        sign_in(resource_name, resource)
+    if self.resource.errors.empty?
+      self.resource.unlock_access! if unlockable?(resource)
+      if Devise.sign_in_after_reset_password
+        render json: "Password reset successful.", status: :ok
       else
-        respond_with_error
+        respond_with resource
       end
-      respond_with_error(resource.errors)
     else
       set_minimum_password_length
-      respond_with resource
+      respond_with_error resource.errors
     end
   end
 
@@ -37,7 +34,7 @@ class User::PasswordsController < Devise::PasswordsController
 
   def respond_with(resource, _opts = {})
     render json: {
-      status: {code: 200, message: 'Logged in sucessfully.'},
+      message: 'Logged in sucessfully.',
       data: UserSerializer.new(resource).serializable_hash[:data][:attributes]
     }, status: :ok
   end

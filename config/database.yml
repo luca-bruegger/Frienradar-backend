@@ -15,6 +15,7 @@ staging:
   database: frienradar_staging
   username: <%= ENV['FRIENRADAR_DATABASE_USER'] %>
   password: <%= ENV['FRIENRADAR_DATABASE_PASSWORD'] %>
+  port: <%= ENV['FRIENRADAR_DATABASE_PORT'] %>
 
 test:
   <<: *default

@@ -13,7 +13,7 @@ if [ -z "$SKIP_RAILS_MIGRATIONS" ]; then
   echo "✅ Migrations done"
 fi
 
-if [ -z "$SKIP_SEEDS" ]; then
+if [ -z "$SKIP_SEEDS" ] || [ "$RAILS_ENV" != "production" ]; then
   if [ ! -f .seed_done ]; then
     echo "⚙️ Seeding db"
     bundle exec rails db:seed && date > .seed_done

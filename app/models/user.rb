@@ -17,11 +17,12 @@ class User < ApplicationRecord
 
   has_many :invitations, dependent: :destroy, foreign_key: 'user_id', primary_key: 'id'
   has_many :pending_invitations, -> { where(confirmed: false) }, class_name: 'Invitation', foreign_key: 'user_id', dependent: :destroy
-  scope :registration_completed, -> { where("LENGTH(username) >= 3 AND LENGTH(username) <= 30 AND confirmed_at IS NOT NULL") }
+  scope :registration_completed, -> { joins(:social_accounts).where("LENGTH(users.username) >= 3 AND LENGTH(users.username) <= 30 AND users.confirmed_at IS NOT NULL") }
 
   has_many :social_accounts, dependent: :destroy
 
   devise :database_authenticatable,
+         :authenticatable,
          :registerable,
          :recoverable,
          :validatable,
@@ -29,7 +30,6 @@ class User < ApplicationRecord
          :confirmable,
          :lockable,
          jwt_revocation_strategy: JwtDenylist
-
 
   def invite(friend_id)
     return if friend_id == id
