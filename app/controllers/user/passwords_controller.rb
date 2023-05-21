@@ -18,14 +18,8 @@ class User::PasswordsController < Devise::PasswordsController
     self.resource = resource_class.reset_password_by_token(resource_params)
 
     if self.resource.errors.empty?
-      self.resource.unlock_access! if unlockable?(resource)
-      if Devise.sign_in_after_reset_password
-        render json: "Password reset successful.", status: :ok
-      else
-        respond_with resource
-      end
+      respond_with resource
     else
-      set_minimum_password_length
       respond_with_error resource.errors
     end
   end
