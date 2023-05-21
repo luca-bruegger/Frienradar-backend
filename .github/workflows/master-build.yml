@@ -1,0 +1,60 @@
+name: Master Build
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-master-image:
+    name: Build master image ⚙️
+    runs-on: ubuntu-latest
+
+    env:
+      GITHUB_REF: ${{ github.ref }}
+      DOCKER_REGISTRY: ghcr.io
+      DOCKER_IMAGE: luca-bruegger/frienradar-backend
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Creating envs
+        run: |
+          echo "IMAGE_TAG=sha-$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+          echo "DOCKER_IMAGE_URI=${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE }}" >> $GITHUB_ENV
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ env.DOCKER_REGISTRY }}
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.AUTH_TOKEN_ACTIONS }}
+
+      - name: Build docker image and push
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./docker/production/Dockerfile
+          push: true
+          tags: ${{ env.DOCKER_IMAGE_URI }}:${{ env.IMAGE_TAG }},${{ env.DOCKER_IMAGE_URI }}:latest
+
+  deploy:
+    name: Deploy production 🚀
+    needs: build-master-image
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Sleep for 10 seconds
+        run: sleep 10s
+        shell: bash
+
+      - name: Deploy stack to Portainer
+        uses: carlrygart/portainer-stack-deploy@v1
+        with:
+          portainer-host: ${{ secrets.PORTAINER_HOST }}
+          username: ${{ secrets.PORTAINER_USERNAME }}
+          password: ${{ secrets.PORTAINER_PASSWORD }}
+          stack-name: 'frienradar-production'
+          stack-definition: 'docker-compose.production.yml'
