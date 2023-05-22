@@ -13,17 +13,6 @@ class User::PasswordsController < Devise::PasswordsController
     }, status: :ok
   end
 
-  # PUT /resource/password
-  def update
-    self.resource = resource_class.reset_password_by_token(resource_params)
-    byebug
-    if self.resource.errors.empty?
-      respond_with resource
-    else
-      respond_with_error resource.errors
-    end
-  end
-
   private
 
   def respond_with(resource, _opts = {})
@@ -31,10 +20,6 @@ class User::PasswordsController < Devise::PasswordsController
       message: 'Logged in sucessfully.',
       data: UserSerializer.new(resource).serializable_hash[:data][:attributes]
     }, status: :ok
-  end
-
-  def respond_with_error(errors = [])
-    render json: errors.full_messages.to_sentence, status: :bad_request
   end
 
 end
