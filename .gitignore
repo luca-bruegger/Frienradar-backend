@@ -19,8 +19,11 @@
 
 .byebug_history
 
-# Ignore master key for decrypting credentials and more.
-/config/master.key
-
 # Ignore important credentials
 .env
+
+# Ignore idea files
+.idea
+
+# Ignore all files in the config/credentials directory
+/config/credentials/*.key
