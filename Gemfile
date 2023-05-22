@@ -55,12 +55,7 @@ gem 'onesignal', '~> 1.0.1'
 # Rate limiting
 gem 'rack-attack'
 
-group :staging do
-  gem 'faker'
-  gem 'dotenv-rails'
-end
-
-group :development, :test do
+group :development, :test, :staging do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 5.0.0'
