@@ -24,10 +24,10 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = 'support@frienradar.com'
 
   # Configure the class responsible to send e-mails.
-  # config.mailer = 'Devise::Mailer'
+  config.mailer = 'DeviseMailer'
 
   # Configure the parent class responsible to send e-mails.
   # config.parent_mailer = 'ActionMailer::Base'
@@ -143,7 +143,7 @@ Devise.setup do |config|
   # without confirming their account.
   # Default is 0.days, meaning the user cannot access the website without
   # confirming their account.
-  # config.allow_unconfirmed_access_for = 2.days
+  config.allow_unconfirmed_access_for = nil
 
   # A period that the user is allowed to confirm their account before their
   # token becomes invalid. For example, if set to 3.days, the user can confirm
@@ -164,7 +164,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :rememberable
   # The time the user will be remembered without asking for credentials again.
-  # config.remember_for = 2.weeks
+  config.remember_for = 2.weeks
 
   # Invalidates all the remember me tokens when the user signs out.
   config.expire_all_remember_me_on_sign_out = true
@@ -178,7 +178,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :validatable
   # Range for password length.
-  config.password_length = 6..128
+  config.password_length = 8..128
 
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly
@@ -228,7 +228,7 @@ Devise.setup do |config|
 
   # When set to false, does not sign a user in automatically after their password is
   # reset. Defaults to true, so a user is signed in automatically after a reset.
-  # config.sign_in_after_reset_password = true
+  config.sign_in_after_reset_password = false
 
   # ==> Configuration for :encryptable
   # Allow you to use another hashing or encryption algorithm besides bcrypt (default).
@@ -262,8 +262,8 @@ Devise.setup do |config|
   # If you have any extra navigational formats, like :iphone or :mobile, you
   # should add them to the navigational formats lists.
   #
-  # The "*/*" below is required to match Internet Explorer requests.
-  # config.navigational_formats = ['*/*', :html]
+  # The "*/*" below is required to match Internet Explorer requests. [] as its api only app.
+  config.navigational_formats = []
 
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
@@ -307,15 +307,22 @@ Devise.setup do |config|
 
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
-  # config.sign_in_after_change_password = true
+  config.sign_in_after_change_password = false
+
+  config.warden do |warden|
+    warden.scope_defaults :user, store: false  # <---- This will use the config even if it's not passed to the method opts
+    warden.scope_defaults :admin, store: false # <---- You need to configure it for each scope you need it for
+    # you might also want to overwrite the FailureApp in this section
+  end
 
   config.jwt do |jwt|
     jwt.secret = ENV['DEVISE_JWT_SECRET_KEY']
     jwt.dispatch_requests = [
-      ['POST', %r{^/sign_in$}]
+      ["POST", %r{user/sign_in}],
+      ["POST", %r{user}]
     ]
     jwt.revocation_requests = [
-      ['DELETE', %r{^/sign_out$}]
+      ['DELETE', %r{^/user/sign_out$}]
     ]
     jwt.expiration_time = 15.day.to_i
   end
