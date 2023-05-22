@@ -17,7 +17,11 @@ class User < ApplicationRecord
 
   has_many :invitations, dependent: :destroy, foreign_key: 'user_id', primary_key: 'id'
   has_many :pending_invitations, -> { where(confirmed: false) }, class_name: 'Invitation', foreign_key: 'user_id', dependent: :destroy
-  scope :registration_completed, -> { joins(:social_accounts).where("LENGTH(users.username) >= 3 AND LENGTH(users.username) <= 30 AND users.confirmed_at IS NOT NULL").uniq }
+  scope :registration_completed, -> {
+    joins(:social_accounts)
+      .where("LENGTH(users.username) >= 3 AND LENGTH(users.username) <= 30 AND users.confirmed_at IS NOT NULL")
+      .distinct('users.id')
+  }
 
   has_many :social_accounts, dependent: :destroy
 
