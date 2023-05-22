@@ -27,7 +27,8 @@ class NearbyUsersController < CrudController
       geolocations = Geolocation.where.not("geohash LIKE :geohash", geohash: "#{geohash.first(GEOHASH_LENGTHS[3])}%")
     end
 
-    geolocations.pluck(:user_id) - [current_user.id]
+    ids = geolocations.pluck(:user_id) - [current_user.id]
+    ids.uniq
   end
 
   def fetch_entries

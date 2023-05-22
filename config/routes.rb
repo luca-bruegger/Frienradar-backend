@@ -6,7 +6,7 @@ Rails.application.routes.draw do
                sessions: 'user/sessions',
                registrations: 'user/registrations',
                confirmations: 'user/confirmations',
-                passwords: 'user/passwords',
+               passwords: 'user/passwords'
              }
 
   match '/current_user', to: 'current_user#show', via: :get
